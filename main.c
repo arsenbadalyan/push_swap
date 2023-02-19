@@ -1,62 +1,33 @@
-#include <unistd.h>
-#include <stdio.h>
 #include "push_swap.h"
-
-char **splited_arr(char *str, char seperator)
-{
-	char **splited;
-
-	splited = ft_split(str, ' ');
-	if(!splited)
-		return (0);
-	if(!splited[0])
-	{
-		free_me(0, splited);
-		return (0);
-	}
-	return (splited);
-}
-
-int validate_arguments(int argc, char **argv)
-{
-	int i;
-	int	size;
-	char *check;
-	char **splited;
-
-	size = 0;
-	while (--argc)
-	{
-		i = -1;
-		splited = splited_arr(argv[argc], ' ');
-		if(!splited)
-			return (0);
-		while (splited[++i])
-		{
-			my_atoi(splited[i], splited);
-			size++;
-		}
-		free_me(0, splited);
-	}
-	return (size);
-}
 
 // Main function to apply user arguments
 int main(int argc, char **argv)
 {
 	int argument_size;
 	int *list;
+	Stack *stack_a;
+	Stack *stack_b;
+	StackInterface *istack_a;
+	StackInterface *istack_b;
 
+	istack_a = (StackInterface *)malloc(sizeof(*istack_a));
+	if(!istack_a || argc <= 1)
+		return (0);
 	argument_size = validate_arguments(argc, argv);
 	if (argc > 1 && argument_size)
 	{
 		list = mkarr_check_doubles(argv, argc, argument_size);
-		while(--argument_size >= 0)
-		{
-			printf("arg[%d] = %d\n", argument_size, list[argument_size]);
-		}
+		if(!list)
+			print_error();
+		stack_a = create_stack(list, argument_size, istack_a);
+		// while(--argument_size >= 0)
+		// {
+		// 	printf("arg[%d] = %d\n", argument_size, list[argument_size]);
+		// }
+		// free_me(&list);
 	}
 	else
 		print_error();
+	// system("leaks push_swap");
 	return (0);
 }
