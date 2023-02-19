@@ -3,8 +3,8 @@
 // Main function to apply user arguments
 int main(int argc, char **argv)
 {
-	int argument_size;
 	int *list;
+	size_t argument_size;
 	Stack *stack_a;
 	Stack *stack_b;
 	StackInterface *istack_a;

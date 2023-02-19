@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:33:45 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/19 20:02:53 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/19 21:06:28 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct StackInterface
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 Stack *create_stack(int *list, int size, StackInterface *istack);
+void index_stack(Stack *stack, int size);
 
 #endif
 
