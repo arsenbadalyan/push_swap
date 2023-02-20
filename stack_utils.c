@@ -12,10 +12,27 @@
 
 #include "push_swap.h"
 
-Stack	*create_stack(int *list, int size, StackInterface *istack)
+void free_stack(StackInterface *stack)
 {
-	Stack	*stack;
-	int		i;
+	Stack *list;
+	int i;
+
+	i = 0;
+	list = stack.first;
+	if (!list)
+		return;
+	while (list[i].data != stack.first->data && i != 0)
+	{
+		free(list[i]);
+		i++;
+	}
+	free(list);
+}
+
+Stack *create_stack(int *list, int size, StackInterface *istack)
+{
+	Stack *stack;
+	int i;
 
 	i = -1;
 	stack = (Stack *)malloc(sizeof(*stack) * size);
@@ -46,63 +63,63 @@ void index_stack(Stack *stack, int size)
 	Stack *temp;
 	int data;
 	int i;
-	
+
 	i = 0;
 	temp = (Stack *)malloc(sizeof(*temp) * size);
-	if(!temp)
+	if (!temp)
 		stack = NULL;
-	while(i < size)
+	while (i < size)
 	{
 		temp[i] = stack[i];
 		i++;
 	}
+	sort_list(temp, size);
+	indexing_stack(stack, temp, size);
 	i = 0;
-	while(i < size - 1)
+	while (i < size)
 	{
-		if(temp[i].data > temp[i + 1].data)
+		printf("%lu - %d\n", stack[i].index, stack[i].data);
+		i++;
+	}
+}
+
+void sort_list(Stack *stack, int size)
+{
+	int i;
+	int temp;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (stack[i].data > stack[i + 1].data)
 		{
-			data = temp[i].data;
-			temp[i].data = temp[i + 1].data;
-			temp[i + 1].data = data;
+			temp = stack[i].data;
+			stack[i].data = stack[i + 1].data;
+			stack[i + 1].data = temp;
 			i = 0;
 			continue;
 		}
-		temp[i].index = i;
+		stack[i].index = i;
 		i++;
 	}
-	temp[i].index = i;
+	stack[i].index = i;
+}
+
+void indexing_stack(Stack *stack, Stack *temp, int size)
+{
+	int i;
+	int j;
+
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
-		data = 0;
-		while(data < size)
+		j = 0;
+		while (j < size)
 		{
-			if(temp[i].data == stack[data].data)
-				stack[data].index = temp[i].index;
-			data++;
+			if (temp[i].data == stack[j].data)
+				stack[j].index = temp[i].index;
+			j++;
 		}
 		i++;
 	}
-	i = 0;
-	while(i < size)
-	{
-		printf("data: %d - index: %lu\n", stack[i].data, stack[i].index);
-		i++;
-	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

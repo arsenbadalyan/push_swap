@@ -37,7 +37,8 @@ typedef struct StackInterface
 
 Stack *create_stack(int *list, int size, StackInterface *istack);
 void index_stack(Stack *stack, int size);
-
+void sort_list(Stack *stack, int size);
+void indexing_stack(Stack *stack, Stack *temp, int size);
 #endif
 
 
