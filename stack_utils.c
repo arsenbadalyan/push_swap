@@ -12,31 +12,14 @@
 
 #include "push_swap.h"
 
-void free_stack(StackInterface *stack)
-{
-	Stack *list;
-	int i;
-
-	i = 0;
-	list = stack.first;
-	if (!list)
-		return;
-	while (list[i].data != stack.first->data && i != 0)
-	{
-		free(list[i]);
-		i++;
-	}
-	free(list);
-}
-
-Stack *create_stack(int *list, int size, StackInterface *istack)
+void create_stack(int *list, size_t size, StackInterface *istack)
 {
 	Stack *stack;
-	int i;
+	size_t i;
 
-	i = -1;
+	i = 0;
 	stack = (Stack *)malloc(sizeof(*stack) * size);
-	while (++i < size && stack)
+	while (i < size && stack)
 	{
 		stack[i].index = 0;
 		stack[i].data = list[i];
@@ -49,20 +32,21 @@ Stack *create_stack(int *list, int size, StackInterface *istack)
 		}
 		if (i == size - 1)
 		{
+			istack->top = i + 1;
 			istack->last = (stack + i);
 			stack[0].prev = (stack + i);
 			stack[i].next = stack;
 		}
+		i++;
 	}
-	index_stack(stack, size);
-	return (stack);
+	if (stack)
+		index_stack(stack, size);
 }
 
-void index_stack(Stack *stack, int size)
+void index_stack(Stack *stack, size_t size)
 {
 	Stack *temp;
-	int data;
-	int i;
+	size_t i;
 
 	i = 0;
 	temp = (Stack *)malloc(sizeof(*temp) * size);
@@ -75,17 +59,17 @@ void index_stack(Stack *stack, int size)
 	}
 	sort_list(temp, size);
 	indexing_stack(stack, temp, size);
-	i = 0;
-	while (i < size)
-	{
-		printf("%lu - %d\n", stack[i].index, stack[i].data);
-		i++;
-	}
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	printf("%lu - %d\n", stack[i].index, stack[i].data);
+	// 	i++;
+	// }
 }
 
-void sort_list(Stack *stack, int size)
+void sort_list(Stack *stack, size_t size)
 {
-	int i;
+	size_t i;
 	int temp;
 
 	i = 0;
@@ -105,10 +89,10 @@ void sort_list(Stack *stack, int size)
 	stack[i].index = i;
 }
 
-void indexing_stack(Stack *stack, Stack *temp, int size)
+void indexing_stack(Stack *stack, Stack *temp, size_t size)
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 
 	i = 0;
 	while (i < size)

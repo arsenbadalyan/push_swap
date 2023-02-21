@@ -22,9 +22,9 @@ char **splited_arr(char *str, char seperator);
 
 // Checking
 int my_atoi(char *number, char **splited);
-int *mkarr_check_doubles(char **argv, int argc, int size);
-int check_doubles(int *num_list, int size);
-int validate_arguments(int argc, char **argv);
+int *mkarr_check_doubles(char **argv, int argc, size_t size);
+int check_doubles(int *num_list, size_t size);
+size_t validate_arguments(int argc, char **argv);
 char *check_zeros(char *number);
 
 

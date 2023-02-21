@@ -4,6 +4,8 @@ RM = rm -rf
 OUT_FILE = push_swap
 all:
 	$(CC) *.c -o $(OUT_FILE)
+flag:
+	$(CC) $(FLAGS) *.c -o $(OUT_FILE)
 run:
 	./$(OUT_FILE)
 clean:
