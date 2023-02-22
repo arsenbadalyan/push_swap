@@ -19,6 +19,7 @@ void free_stack(StackInterface *stack)
 
 void make_stack_empty(StackInterface *stack)
 {
+	puts("empty");
 	if (!stack)
 		return;
 	stack->first = NULL;
@@ -33,11 +34,34 @@ void remove_el_from_stack(StackInterface *istack, Stack *stack)
 		make_stack_empty(istack);
 	else
 	{
+		if (istack->first->data == stack->data)
+			istack->first = stack->next;
+		else if (istack->last->data == stack->data)
+			istack->last = stack->prev;
 		stack->next->prev = stack->prev;
-		stack->prev->next = stack->next;
 	}
 	istack->top--;
-	printf("%d\n", stack->data);
-	free(stack);
-	stack = 0x0;
+	free_me(stack, 0);
+}
+
+void add_el_to_stack(StackInterface *istack, Stack *stack)
+{
+	Stack *copy;
+
+	copy = (Stack *)malloc(sizeof(*copy));
+	if (!copy)
+		return; // TODO: clean all logic
+	copy = stack;
+	istack->top++;
+	if (!istack->first)
+	{
+		istack->first = copy;
+		istack->last = copy;
+		return;
+	}
+	istack->first->prev = copy;
+	istack->last->next = copy;
+	copy->next = istack->first;
+	copy->prev = istack->last;
+	istack->first = copy;
 }

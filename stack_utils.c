@@ -12,62 +12,67 @@
 
 #include "push_swap.h"
 
+void stack_chain(StackInterface *istack, Stack *current, Stack *prev, size_t size)
+{
+	if (!istack || !current)
+		return;
+	if (istack->top == 0)
+		istack->first = current;
+	else
+	{
+		prev->next = current;
+		current->prev = prev;
+	}
+	if (istack->top == size - 1)
+	{
+		istack->last = current;
+		istack->first->prev = istack->last;
+		current->next = istack->first;
+	}
+}
+
 void create_stack(int *list, size_t size, StackInterface *istack)
 {
 	Stack *stack;
-	size_t i;
+	Stack *temp;
 
-	i = 0;
-	stack = (Stack *)malloc(sizeof(*stack) * size);
-	while (i < size && stack)
+	istack->top = 0;
+	temp = NULL;
+	while (istack->top < size)
 	{
-		stack[i].index = 0;
-		stack[i].data = list[i];
-		if (i == 0)
-			istack->first = (stack + i);
-		else
-		{
-			stack[i].prev = (stack + i - 1);
-			stack[i - 1].next = (stack + i);
-		}
-		if (i == size - 1)
-		{
-			istack->top = i + 1;
-			istack->last = (stack + i);
-			stack[0].prev = (stack + i);
-			stack[i].next = stack;
-		}
-		i++;
+		stack = (Stack *)malloc(sizeof(*stack) * size);
+		if (!stack)
+			return;
+		stack->data = list[istack->top];
+		stack_chain(istack, stack, temp, size);
+		temp = stack;
+		istack->top++;
 	}
 	if (stack)
-		index_stack(stack, size);
+		index_stack(istack->first, size);
 }
 
 void index_stack(Stack *stack, size_t size)
 {
-	Stack *temp;
+	int *temp;
 	size_t i;
 
 	i = 0;
-	temp = (Stack *)malloc(sizeof(*temp) * size);
+	temp = (int *)malloc(sizeof(int) * size);
 	if (!temp)
 		stack = NULL;
 	while (i < size)
 	{
-		temp[i] = stack[i];
+		temp[i] = stack->data;
+		stack = stack->next;
 		i++;
 	}
 	sort_list(temp, size);
 	indexing_stack(stack, temp, size);
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	printf("%lu - %d\n", stack[i].index, stack[i].data);
-	// 	i++;
-	// }
+	free(temp);
 }
 
-void sort_list(Stack *stack, size_t size)
+void sort_list(int *stack, size_t size)
 {
 	size_t i;
 	int temp;
@@ -75,33 +80,35 @@ void sort_list(Stack *stack, size_t size)
 	i = 0;
 	while (i < size - 1)
 	{
-		if (stack[i].data > stack[i + 1].data)
+		if (stack[i] > stack[i + 1])
 		{
-			temp = stack[i].data;
-			stack[i].data = stack[i + 1].data;
-			stack[i + 1].data = temp;
+			temp = stack[i];
+			stack[i] = stack[i + 1];
+			stack[i + 1] = temp;
 			i = 0;
 			continue;
 		}
-		stack[i].index = i;
 		i++;
 	}
-	stack[i].index = i;
 }
 
-void indexing_stack(Stack *stack, Stack *temp, size_t size)
+void indexing_stack(Stack *stack, int *temp, size_t size)
 {
 	size_t i;
 	size_t j;
+	Stack *head;
 
 	i = 0;
+	head = stack;
 	while (i < size)
 	{
 		j = 0;
+		stack = head;
 		while (j < size)
 		{
-			if (temp[i].data == stack[j].data)
-				stack[j].index = temp[i].index;
+			if (temp[i] == stack->data)
+				stack->index = i;
+			stack = stack->next;
 			j++;
 		}
 		i++;

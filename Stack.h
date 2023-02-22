@@ -35,16 +35,19 @@ typedef struct StackInterface
 // >>>>>>>>>> Functions <<<<<<<<<<
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+void print_stack(StackInterface *stack, int all, char stack_name); // TODO: delete
+
 void create_stack(int *list, size_t size, StackInterface *istack);
 void index_stack(Stack *stack, size_t size);
-void sort_list(Stack *stack, size_t size);
-void indexing_stack(Stack *stack, Stack *temp, size_t size);
+void sort_list(int *stack, size_t size);
+void indexing_stack(Stack *stack, int *temp, size_t size);
 
 // Operations
 void swap_stack(StackInterface *stack);
 void swap_together(StackInterface *stack_a, StackInterface *stack_b);
 void make_stack_empty(StackInterface *stack);
 void remove_el_from_stack(StackInterface *istack, Stack *stack);
+void add_el_to_stack(StackInterface *istack, Stack *stack);
 #endif
 
 

@@ -1,35 +1,42 @@
 #include "push_swap.h"
 
-void print_stack(StackInterface *stack, int all)
+void print_stack(StackInterface *stack, int all, char stack_name)
 {
 	size_t i;
 	Stack *head;
 
-	if (!stack->first)
-		return;
 	head = stack->first;
 	i = 0;
-	if (all)
+	if (all && stack->first)
 	{
 		while (i < stack->top)
 		{
 			puts("-----------");
-			printf("Data:  %d\n", head[i].data);
-			printf("Index: %lu\n", head[i].index);
+			printf("Data:  %d\n", head->data);
+			printf("Index: %lu\n", head->index);
 			puts("-----------");
 			i++;
+			head = head->next;
 		}
 	}
 	else
 	{
 		while (i < stack->top)
 		{
-			printf("%d\n", head[i].data);
+			printf("|%d|\n", head->data);
+			head = head->next;
 			i++;
 		}
-		puts("-");
-		puts("s");
+		puts("---");
+		printf(" %c\n", stack_name);
 	}
+}
+
+void init_stack(StackInterface *stack)
+{
+	stack->first = NULL;
+	stack->last = NULL;
+	stack->top = 0;
 }
 
 int start_sort(StackInterface *stack_a)
@@ -39,14 +46,17 @@ int start_sort(StackInterface *stack_a)
 	stack_b = (StackInterface *)malloc(sizeof(stack_b));
 	if (!stack_b)
 		return (0);
-	print_stack(stack_a, 0);
-	// swap_together(stack_a, stack_b);
-	Stack *test = stack_a->first;
-	// remove_el_from_stack(stack_a, test);
-	// test = test->next;
-	free(&test[1]);
-	// free(test->next);
-	print_stack(stack_a, 0);
+	init_stack(stack_b);
+	print_stack(stack_a, 0, 'a');
+	print_stack(stack_b, 0, 'b');
+	// add_el_to_stack(stack_b, stack_a->first);
+	remove_el_from_stack(stack_a, stack_a->first);
+	// add_el_to_stack(stack_b, stack_a->first);
+	remove_el_from_stack(stack_a, stack_a->last);
+	// add_el_to_stack(stack_b, stack_a->first);
+	// remove_el_from_stack(stack_a, stack_a->last);
+	print_stack(stack_a, 0, 'a');
+	print_stack(stack_b, 0, 'b');
 	return (1);
 }
 
