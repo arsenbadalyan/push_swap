@@ -1,16 +1,37 @@
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
+SRCS = $(shell find ./src -name "*.c")
+INCLUDE = -I ./include/
 RM = rm -rf
 OUT_FILE = push_swap
+
+# Colors
+RESET  = \033[0
+RED    = \033[31m
+GREEN  = \033[32m
+YELLOW = \033[33m
+
+
+#TODO: remove flag rule and add flags in 
 all:
-	$(CC) *.c -o $(OUT_FILE)
+	@echo "$(YELLOW)Compiling all files...$(RESET)"
+	@echo "$(YELLOW)Please Wait...$(RESET)"
+	@$(CC) $(INCLUDE) $(SRCS) -o $(OUT_FILE)
+	@echo "$(GREEN)Done$(RESET)"
 flag:
-	$(CC) $(FLAGS) *.c -o $(OUT_FILE)
-run:
-	./$(OUT_FILE)
+	@echo "$(GREEN)Compiling all files...$(RESET)"
+	@$(CC) $(FLAGS) $(INCLUDE) $(SRCS) -o $(OUT_FILE)
 clean:
 	@echo "Removing object files..."
 	@$(RM) *.o
 fclean: clean
 	@echo "Removing out file..."
 	@$(RM) $(OUT_FILE)
+
+#Test case TODO: delete
+run1:
+	./$(OUT_FILE) 1
+run2:
+	./$(OUT_FILE) "5 -002"
+run3:
+	./$(OUT_FILE) 6 4 "-00"
