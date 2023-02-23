@@ -49,12 +49,9 @@ int start_sort(StackInterface *stack_a)
 	init_stack(stack_b);
 	print_stack(stack_a, 0, 'a');
 	print_stack(stack_b, 0, 'b');
-	// add_el_to_stack(stack_b, stack_a->first);
-	remove_el_from_stack(stack_a, stack_a->first);
-	// add_el_to_stack(stack_b, stack_a->first);
-	remove_el_from_stack(stack_a, stack_a->last);
-	// add_el_to_stack(stack_b, stack_a->first);
-	// remove_el_from_stack(stack_a, stack_a->last);
+	push_stack(&stack_a, stack_b);
+	push_stack(&stack_a, stack_b);
+	push_stack(&stack_a, stack_b);
 	print_stack(stack_a, 0, 'a');
 	print_stack(stack_b, 0, 'b');
 	return (1);

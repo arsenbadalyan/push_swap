@@ -1,16 +1,12 @@
 #include "push_swap.h"
 
-void push_stack(StackInterface *fromStack, StackInterface *toStack)
+void push_stack(StackInterface **fromStack, StackInterface *toStack)
 {
-    // Stack *buffer;
+	StackInterface *from_stack;
 
-    // if (!fromStack->first)
-    //     return;
-    // buffer = (Stack *)malloc(sizeof(*buffer));
-    // if (!buffer)
-    //     return; // TODO: free and exit from program
-    // buffer = fromStack->first;
-    // if (fromStack->first->data == fromStack->first->next->data)
-    //     // fromStack->
-    //     fromStack->first = fromStack
+	from_stack = *fromStack;
+	if (!from_stack->first)
+		return;
+	push(toStack, from_stack->first);
+	pop(from_stack, &from_stack->first);
 }

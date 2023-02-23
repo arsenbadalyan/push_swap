@@ -1,5 +1,19 @@
 #include "push_swap.h"
 
+void clone_stack(Stack *dest, Stack *src, int isAll)
+{
+	dest->data = src->data;
+	dest->index = src->data;
+	if (isAll)
+	{
+		dest->next = src->next;
+		dest->prev = src->prev;
+		return;
+	}
+	dest->next = NULL;
+	dest->prev = NULL;
+}
+
 void free_stack(StackInterface *stack)
 {
 	Stack *list;
@@ -26,8 +40,11 @@ void make_stack_empty(StackInterface *stack)
 	stack->last = NULL;
 }
 
-void remove_el_from_stack(StackInterface *istack, Stack *stack)
+void pop(StackInterface *istack, Stack **p_stack)
 {
+	Stack *stack;
+
+	stack = *p_stack;
 	if (!istack || !stack)
 		return;
 	if (stack->next->data == stack->data)
@@ -39,19 +56,20 @@ void remove_el_from_stack(StackInterface *istack, Stack *stack)
 		else if (istack->last->data == stack->data)
 			istack->last = stack->prev;
 		stack->next->prev = stack->prev;
+		stack->prev->next = stack->next;
 	}
 	istack->top--;
 	free_me(stack, 0);
 }
 
-void add_el_to_stack(StackInterface *istack, Stack *stack)
+void push(StackInterface *istack, Stack *stack)
 {
 	Stack *copy;
 
 	copy = (Stack *)malloc(sizeof(*copy));
 	if (!copy)
 		return; // TODO: clean all logic
-	copy = stack;
+	clone_stack(copy, stack, 0);
 	istack->top++;
 	if (!istack->first)
 	{

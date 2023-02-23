@@ -45,9 +45,12 @@ void indexing_stack(Stack *stack, int *temp, size_t size);
 // Operations
 void swap_stack(StackInterface *stack);
 void swap_together(StackInterface *stack_a, StackInterface *stack_b);
+void push_stack(StackInterface **fromStack, StackInterface *toStack);
+
 void make_stack_empty(StackInterface *stack);
-void remove_el_from_stack(StackInterface *istack, Stack *stack);
-void add_el_to_stack(StackInterface *istack, Stack *stack);
+void pop(StackInterface *istack, Stack **p_stack);
+void push(StackInterface *istack, Stack *stack);
+
 #endif
 
 
