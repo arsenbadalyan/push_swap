@@ -2,11 +2,11 @@
 
 void swap_together(StackInterface *stack_a, StackInterface *stack_b)
 {
-    swap_stack(stack_a);
-    swap_stack(stack_b);
+    swap(stack_a);
+    swap(stack_b);
 }
 
-void swap_stack(StackInterface *stack)
+void swap(StackInterface *stack)
 {
     Stack *list;
     int tempData;
