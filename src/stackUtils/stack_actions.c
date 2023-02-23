@@ -3,7 +3,7 @@
 void clone_stack(Stack *dest, Stack *src, int isAll)
 {
 	dest->data = src->data;
-	dest->index = src->data;
+	dest->index = src->index;
 	if (isAll)
 	{
 		dest->next = src->next;
@@ -33,7 +33,6 @@ void free_stack(StackInterface *stack)
 
 void make_stack_empty(StackInterface *stack)
 {
-	puts("empty");
 	if (!stack)
 		return;
 	stack->first = NULL;
@@ -75,6 +74,8 @@ void push(StackInterface *istack, Stack *stack)
 	{
 		istack->first = copy;
 		istack->last = copy;
+		istack->first->next = istack->first;
+		istack->first->prev = istack->first;
 		return;
 	}
 	istack->first->prev = copy;

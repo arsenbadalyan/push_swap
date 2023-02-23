@@ -9,4 +9,5 @@ void push_stack(StackInterface **fromStack, StackInterface *toStack)
 		return;
 	push(toStack, from_stack->first);
 	pop(from_stack, &from_stack->first);
+	print_command('p', toStack->name);
 }

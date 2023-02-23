@@ -17,16 +17,18 @@ all:
 	@echo "$(YELLOW)Compiling all files...$(RESET)"
 	@echo "$(YELLOW)Please Wait...$(RESET)"
 	@$(CC) $(INCLUDE) $(SRCS) -o $(OUT_FILE)
-	@echo "$(GREEN)Done$(RESET)"
+	@echo "$(GREEN)Done!$(RESET)"
 flag:
 	@echo "$(GREEN)Compiling all files...$(RESET)"
 	@$(CC) $(FLAGS) $(INCLUDE) $(SRCS) -o $(OUT_FILE)
 clean:
-	@echo "Removing object files..."
+	@echo "$(RED)Removing object files...$(RESET)"
 	@$(RM) *.o
+	@echo "$(GREEN)Done!$(RESET)"
 fclean: clean
-	@echo "Removing out file..."
+	@echo "$(RED)Removing out file...$(RESET)"
 	@$(RM) $(OUT_FILE)
+	@echo "$(GREEN)Done!$(RESET)"
 
 #Test case TODO: delete
 run1:

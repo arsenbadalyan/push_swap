@@ -29,12 +29,18 @@ typedef struct StackInterface
 	size_t top;
     Stack *first;
     Stack *last;
+    char name;
 } StackInterface;
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // >>>>>>>>>> Functions <<<<<<<<<<
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+// Print commands function
+void print_command(char first, char sec);
+void print_command_adn(char first, char sec, char additional);
+
+// TODO: delete
 void print_stack(StackInterface *stack, int all, char stack_name); // TODO: delete
 
 void create_stack(int *list, size_t size, StackInterface *istack);
@@ -43,14 +49,20 @@ void sort_list(int *stack, size_t size);
 void indexing_stack(Stack *stack, int *temp, size_t size);
 
 // Operations
-void swap_stack(StackInterface *stack);
+void swap(StackInterface *stack, short idf);
 void swap_together(StackInterface *stack_a, StackInterface *stack_b);
 void push_stack(StackInterface **fromStack, StackInterface *toStack);
-
+void rotate(StackInterface *stack, short idf);
+void rotate_together(StackInterface *s1, StackInterface *s2);
+void reverse(StackInterface *stack, short idf);
+void reverse_together(StackInterface *s1, StackInterface *s2);
 void make_stack_empty(StackInterface *stack);
 void pop(StackInterface *istack, Stack **p_stack);
 void push(StackInterface *istack, Stack *stack);
 
+// If All is ok then start sort :)
+void select_algorithm(StackInterface *stack_a, StackInterface *stack_b);
+void sort_3(StackInterface *stack_a, StackInterface *stack_b);
 #endif
 
 

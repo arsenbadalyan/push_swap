@@ -2,23 +2,26 @@
 
 void swap_together(StackInterface *stack_a, StackInterface *stack_b)
 {
-    swap(stack_a);
-    swap(stack_b);
+    swap(stack_a, 0);
+    swap(stack_b, 0);
+    print_command('s', 's');
 }
 
-void swap(StackInterface *stack)
+void swap(StackInterface *stack, short idf)
 {
     Stack *list;
     int tempData;
     size_t tempIndex;
 
-    if (!stack->first || list->next->data == list->data)
-        return;
     list = stack->first;
+    if (!list || list->next->data == list->data)
+        return;
     tempData = list->data;
     tempIndex = list->index;
     list->data = list->next->data;
     list->index = list->next->index;
     list->next->data = tempData;
     list->next->index = tempIndex;
+    if (idf)
+        print_command('s', stack->name);
 }

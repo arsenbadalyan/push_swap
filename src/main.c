@@ -48,11 +48,12 @@ int start_sort(StackInterface *stack_a)
 	if (!stack_b)
 		return (0);
 	init_stack(stack_b, 'b');
-	print_stack(stack_a, 0, stack_a->name);
-	print_stack(stack_b, 0, stack_b->name);
-	reverse(stack_a);
-	print_stack(stack_a, 0, stack_a->name);
-	print_stack(stack_b, 0, stack_b->name);
+	// print_stack(stack_a, 0, stack_a->name);
+	// print_stack(stack_b, 0, stack_b->name);
+	select_algorithm(stack_a, stack_b);
+	// print_stack(stack_a, 0, stack_a->name);
+	// print_stack(stack_b, 0, stack_b->name);
+	// printf("|SORT END|");
 	return (1);
 }
 
