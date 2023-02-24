@@ -33,7 +33,7 @@ int *mkarr_check_doubles(char **argv, int argc, size_t size)
 		while (i > 0)
 		{
 			i--;
-			num_list[temp] = my_atoi(splited[i], 0);
+			num_list[temp] = (int)my_atoi(splited[i]);
 			temp--;
 		}
 		free_me(0, splited);
@@ -67,10 +67,10 @@ int check_doubles(int *num_list, size_t size)
 	return (1);
 }
 
-int my_atoi(char *number, char **splited)
+long long my_atoi(char *number)
 {
 	int sign;
-	unsigned int result;
+	long long result;
 
 	sign = 1;
 	result = 0;
@@ -81,37 +81,8 @@ int my_atoi(char *number, char **splited)
 	number = check_zeros(number);
 	while (*number)
 	{
-		if (*number < '0' || *number > '9')
-		{
-			free_me(0, splited);
-			print_error();
-		}
 		result = ((result * 10) + (*number - '0'));
 		number++;
 	}
-	return ((int)(result * sign));
-}
-
-size_t validate_arguments(int argc, char **argv)
-{
-	size_t i;
-	size_t size;
-	char **splited;
-
-	size = 0;
-	while (--argc)
-	{
-		i = 0;
-		splited = splited_arr(argv[argc], ' ');
-		if (!splited)
-			return (0);
-		while (splited[i])
-		{
-			my_atoi(splited[i], splited);
-			size++;
-			i++;
-		}
-		free_me(0, splited);
-	}
-	return (size);
+	return (result * sign);
 }

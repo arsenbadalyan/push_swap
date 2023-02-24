@@ -63,6 +63,7 @@ void push(StackInterface *istack, Stack *stack);
 // If All is ok then start sort :)
 void select_algorithm(StackInterface *stack_a, StackInterface *stack_b);
 void sort_3(StackInterface *stack_a, StackInterface *stack_b);
+short check_if_sorted(StackInterface *stack);
 #endif
 
 

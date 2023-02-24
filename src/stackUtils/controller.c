@@ -12,6 +12,8 @@ void select_algorithm(StackInterface *stack_a, StackInterface *stack_b)
             swap(stack_a, 1);
         return;
     }
+    if (check_if_sorted(stack_a))
+        return;
     if (stack_a->top == 3)
     {
         sort_3(stack_a, stack_b);
@@ -36,4 +38,21 @@ void sort_3(StackInterface *stack_a, StackInterface *stack_b)
         return;
     }
     swap(stack_a, 1);
+}
+
+short check_if_sorted(StackInterface *stack)
+{
+    Stack *current;
+    int cur_num;
+
+    current = stack->first->next;
+    cur_num = stack->first->index;
+    while (current->index != stack->first->index)
+    {
+        if (current->index != cur_num + 1)
+            return (0);
+        cur_num = current->index;
+        current = current->next;
+    }
+    return (1);
 }
