@@ -32,28 +32,32 @@ void print_stack(StackInterface *stack, int all, char stack_name)
 	}
 }
 
-void init_stack(StackInterface *stack, char name)
+StackInterface *init_stack(char name)
 {
+	StackInterface *stack;
+
+	stack = (StackInterface *)malloc(sizeof(StackInterface));
+	if(!stack)
+		return (NULL);
 	stack->first = NULL;
 	stack->last = NULL;
 	stack->top = 0;
 	stack->name = name;
+	return (stack);
 }
 
 int start_sort(StackInterface *stack_a)
 {
 	StackInterface *stack_b;
 
-	stack_b = (StackInterface *)malloc(sizeof(stack_b));
+	stack_b = init_stack('b');
 	if (!stack_b)
 		return (0);
-	init_stack(stack_b, 'b');
-	// print_stack(stack_a, 0, stack_a->name);
+	print_stack(stack_a, 0, stack_a->name);
 	// print_stack(stack_b, 0, stack_b->name);
 	select_algorithm(stack_a, stack_b);
-	// print_stack(stack_a, 0, stack_a->name);
+	print_stack(stack_a, 0, stack_a->name);
 	// print_stack(stack_b, 0, stack_b->name);
-	// printf("|SORT END|");
 	return (1);
 }
 
@@ -64,10 +68,9 @@ int main(int argc, char **argv)
 	size_t argument_size;
 	StackInterface *istack_a;
 
-	istack_a = (StackInterface *)malloc(sizeof(*istack_a));
+	istack_a = init_stack('a');
 	if (!istack_a || argc <= 1)
 		return (1);
-	init_stack(istack_a, 'a');
 	argument_size = validate_arguments(argc, argv);
 	if (argument_size)
 	{

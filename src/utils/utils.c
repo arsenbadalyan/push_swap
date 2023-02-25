@@ -2,27 +2,40 @@
 
 void print_error()
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	system("leaks push_swap");
 	exit(1);
 }
 
-void free_me(void *addr, char **addr_2D)
+size_t length(char *str)
 {
-	int i;
+    size_t len;
 
-	i = -1;
+    len = 0;
+    while (str[len])
+        len++;
+    return (len);
+}
+
+void free_me(void **addr, char **addr_2D)
+{
+	size_t i;
+
+	i = 0;
 	if (addr_2D)
 	{
-		while (addr_2D[++i])
+		while (addr_2D[i])
+		{
 			free(addr_2D[i]);
+			i++;
+		}
 		free(addr_2D);
-		addr_2D = 0x0;
+		*addr_2D = 0x0;
 	}
 	if (addr)
 	{
-		free(addr);
-		addr = 0x0;
+		free(*addr);
+		*addr = 0x0;
 	}
 }
 

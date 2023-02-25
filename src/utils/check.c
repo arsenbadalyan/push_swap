@@ -4,7 +4,7 @@ char *check_zeros(char *number)
 {
 	if (*number == '0' && *(number + 1))
 	{
-		while (*number && *number == '\0')
+		while (*number == '0' && *number)
 			number++;
 		return (number);
 	}
@@ -57,7 +57,7 @@ int check_doubles(int *num_list, size_t size)
 			if (num_list[i] == num_list[temp])
 			{
 				i = -1;
-				free_me(num_list, 0);
+				free_me((void *)&num_list, 0);
 				return (0);
 			}
 			temp++;

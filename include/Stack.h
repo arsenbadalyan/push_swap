@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:33:45 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/19 21:06:28 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:31:38 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct Stack {
     int data;
     size_t index;
     struct Stack *prev;
-    struct Stack *next; 
+    struct Stack *next;
 } Stack;
 
 typedef struct StackInterface
@@ -43,6 +43,7 @@ void print_command_adn(char first, char sec, char additional);
 // TODO: delete
 void print_stack(StackInterface *stack, int all, char stack_name); // TODO: delete
 
+StackInterface *init_stack(char name);
 void create_stack(int *list, size_t size, StackInterface *istack);
 void index_stack(Stack *stack, size_t size);
 void sort_list(int *stack, size_t size);
@@ -64,6 +65,8 @@ void push(StackInterface *istack, Stack *stack);
 void select_algorithm(StackInterface *stack_a, StackInterface *stack_b);
 void sort_3(StackInterface *stack_a, StackInterface *stack_b);
 short check_if_sorted(StackInterface *stack);
+short check_ssort(StackInterface *stack);
+void butterfly(StackInterface *stack_a, StackInterface *stack_b);
 #endif
 
 

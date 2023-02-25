@@ -58,7 +58,7 @@ void pop(StackInterface *istack, Stack **p_stack)
 		stack->prev->next = stack->next;
 	}
 	istack->top--;
-	free_me(stack, 0);
+	free_me((void *)&stack, 0);
 }
 
 void push(StackInterface *istack, Stack *stack)
@@ -68,7 +68,9 @@ void push(StackInterface *istack, Stack *stack)
 	copy = (Stack *)malloc(sizeof(*copy));
 	if (!copy)
 		return; // TODO: clean all logic
+	// printf("%d - %lu\n", stack->data, stack->index);
 	clone_stack(copy, stack, 0);
+	// printf("%d - %lu\n", copy->data, copy->index);
 	istack->top++;
 	if (!istack->first)
 	{

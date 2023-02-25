@@ -10,7 +10,11 @@ void rotate_together(StackInterface *s1, StackInterface *s2)
 void rotate(StackInterface *stack, short idf)
 {
     if (stack->top > 1 && stack->first && stack->last)
+    {
         stack->first = stack->first->next;
+        stack->last = stack->last->next;
+    }
+        
     if (idf)
         print_command('r', stack->name);
 }

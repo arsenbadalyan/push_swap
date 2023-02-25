@@ -10,15 +10,18 @@
 #include <stdlib.h>
 #include "Stack.h"
 
+#define INT_MIN -2147483648
+#define INT_MAX 2147483647
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // >>>>>>>>>> Functions <<<<<<<<<<
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 // Utilites
 void print_error();
-void free_me(void *addr, char **addr_2D);
+void free_me(void **addr, char **addr_2D);
 char **ft_split(const char *s, char c); // in one file
 char **splited_arr(char *str, char seperator);
+size_t length(char *str);
 
 // Checking
 long long my_atoi(char *number);
