@@ -1,10 +1,5 @@
 #include "push_swap.h"
 
-int get_n(size_t size)
-{
-    return (1);
-}
-
 void butterfly(StackInterface *stack_a, StackInterface *stack_b)
 {
     int i;
@@ -42,10 +37,10 @@ void butterfly_reverse(StackInterface *stack_a, StackInterface *stack_b)
         }
         if(index > (stack_b->top / 2))
             while(stack_b->first->index != temp->index)
-                rotate(stack_b, 1);
+                reverse(stack_b, 1);
         else
             while(stack_b->first->index != temp->index)
-                reverse(stack_b, 1);
+                rotate(stack_b, 1);
                 
         push_stack(&stack_b, stack_a);
     }

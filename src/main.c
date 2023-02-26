@@ -2,34 +2,34 @@
 
 void print_stack(StackInterface *stack, int all, char stack_name)
 {
-	size_t i;
-	Stack *head;
+	// size_t i;
+	// Stack *head;
 
-	head = stack->first;
-	i = 0;
-	if (all && stack->first)
-	{
-		while (i < stack->top)
-		{
-			puts("-----------");
-			printf("Data:  %d\n", head->data);
-			printf("Index: %lu\n", head->index);
-			puts("-----------");
-			i++;
-			head = head->next;
-		}
-	}
-	else
-	{
-		while (i < stack->top)
-		{
-			printf("|%d|\n", head->data);
-			head = head->next;
-			i++;
-		}
-		puts("---");
-		printf(" %c\n", stack_name);
-	}
+	// head = stack->first;
+	// i = 0;
+	// if (all && stack->first)
+	// {
+	// 	while (i < stack->top)
+	// 	{
+	// 		puts("-----------");
+	// 		printf("Data:  %d\n", head->data);
+	// 		printf("Index: %lu\n", head->index);
+	// 		puts("-----------");
+	// 		i++;
+	// 		head = head->next;
+	// 	}
+	// }
+	// else
+	// {
+	// 	while (i < stack->top)
+	// 	{
+	// 		printf("|%d|\n", head->data);
+	// 		head = head->next;
+	// 		i++;
+	// 	}
+	// 	puts("---");
+	// 	printf(" %c\n", stack_name);
+	// }
 }
 
 StackInterface *init_stack(char name)
@@ -53,10 +53,10 @@ int start_sort(StackInterface *stack_a)
 	stack_b = init_stack('b');
 	if (!stack_b)
 		return (0);
-	print_stack(stack_a, 0, stack_a->name);
+	// print_stack(stack_a, 0, stack_a->name);
 	// print_stack(stack_b, 0, stack_b->name);
 	select_algorithm(stack_a, stack_b);
-	print_stack(stack_a, 0, stack_a->name);
+	// print_stack(stack_a, 0, stack_a->name);
 	// print_stack(stack_b, 0, stack_b->name);
 	return (1);
 }
@@ -69,7 +69,6 @@ int main(int argc, char **argv)
 	StackInterface *istack_a;
 
 	istack_a = init_stack('a');
-	printf("%d\n", 9/2);
 	if (!istack_a || argc <= 1)
 		return (1);
 	argument_size = validate_arguments(argc, argv);

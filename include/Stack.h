@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:33:45 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/26 15:31:44 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:02:09 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ short check_if_sorted(StackInterface *stack);
 short check_ssort(StackInterface *stack);
 void butterfly(StackInterface *stack_a, StackInterface *stack_b);
 void butterfly_reverse(StackInterface *stack_a, StackInterface *stack_b);
+
+// Get N
+size_t    get_n(size_t i);
+size_t    ft_ln(size_t nb);
+size_t    ft_sqrt(size_t nb);
 #endif
 
 

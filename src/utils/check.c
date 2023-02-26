@@ -4,7 +4,7 @@ char *check_zeros(char *number)
 {
 	if (*number == '0' && *(number + 1))
 	{
-		while (*number == '0' && *number)
+		while (*number == '0' && *(number + 1))
 			number++;
 		return (number);
 	}

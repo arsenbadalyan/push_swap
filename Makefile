@@ -30,6 +30,20 @@ fclean: clean
 	@$(RM) $(OUT_FILE)
 	@echo "$(GREEN)Done!$(RESET)"
 
+test: $(NAME)
+	$(eval ARG = $(shell jot -r 5 0 2000000))
+	./push_swap $(ARG) | ./checker_Mac $(ARG)
+	@echo -n "Instructions: "
+	@./push_swap $(ARG) | wc -l
+#                ./push_swap $(ARG)
+
+test_my: $(NAME) $(BONUS_NAME)
+	$(eval ARG = $(shell jot -r 100 0 2000000))
+	./push_swap $(ARG) | ./checker $(ARG)
+	@echo -n "Instructions: "
+	@./push_swap $(ARG) | wc -l
+#                ./push_swap $(ARG)
+
 #Test case TODO: delete
 run1:
 	./$(OUT_FILE) 1
