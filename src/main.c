@@ -69,6 +69,7 @@ int main(int argc, char **argv)
 	StackInterface *istack_a;
 
 	istack_a = init_stack('a');
+	printf("%d\n", 9/2);
 	if (!istack_a || argc <= 1)
 		return (1);
 	argument_size = validate_arguments(argc, argv);

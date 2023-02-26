@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:33:45 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/25 20:31:38 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:31:44 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ void push(StackInterface *istack, Stack *stack);
 
 // If All is ok then start sort :)
 void select_algorithm(StackInterface *stack_a, StackInterface *stack_b);
-void sort_3(StackInterface *stack_a, StackInterface *stack_b);
+void sort_3(StackInterface *stack_a);
 short check_if_sorted(StackInterface *stack);
 short check_ssort(StackInterface *stack);
 void butterfly(StackInterface *stack_a, StackInterface *stack_b);
+void butterfly_reverse(StackInterface *stack_a, StackInterface *stack_b);
 #endif
 
 

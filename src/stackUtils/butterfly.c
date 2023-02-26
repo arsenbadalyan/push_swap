@@ -22,8 +22,48 @@ void butterfly(StackInterface *stack_a, StackInterface *stack_b)
             push_stack(&stack_a, stack_b);
         else
             rotate(stack_a, 1);
-            
     }
-    print_stack(stack_a, 0, stack_a->name);
-    print_stack(stack_b, 0, stack_b->name);
+    butterfly_reverse(stack_a, stack_b);
 }
+
+void butterfly_reverse(StackInterface *stack_a, StackInterface *stack_b)
+{
+    size_t index;
+    Stack *temp;
+
+    while(stack_b->top)
+    {
+        index = 0;
+        temp = stack_b->first;
+        while(temp->index != stack_b->top - 1)
+        {
+            temp = temp->next;
+            index++;
+        }
+        if(index > (stack_b->top / 2))
+            while(stack_b->first->index != temp->index)
+                rotate(stack_b, 1);
+        else
+            while(stack_b->first->index != temp->index)
+                reverse(stack_b, 1);
+                
+        push_stack(&stack_b, stack_a);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

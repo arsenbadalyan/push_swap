@@ -17,7 +17,7 @@
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 // Utilites
-void print_error();
+void print_error(void);
 void free_me(void **addr, char **addr_2D);
 char **ft_split(const char *s, char c); // in one file
 char **splited_arr(char *str, char seperator);

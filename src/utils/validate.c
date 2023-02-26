@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 11:18:08 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/25 17:39:30 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:15:27 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ short	check(char *str)
 	size_t		i;
 
 	i = 0;
+	if ((str[i] == '+' || str[i] == '-') && str[i + 1])
+		str++;
 	str = check_zeros(str);
 	len = length(str);
 	if (!len || len >= 12)
 		return (0);
-	if ((str[i] == '+' || str[i] == '-') && str[i + 1])
-		i++;
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))

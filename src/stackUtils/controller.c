@@ -12,33 +12,29 @@ void select_algorithm(StackInterface *stack_a, StackInterface *stack_b)
 			swap(stack_a, 1);
 		return;
 	}
-	if (check_if_sorted(stack_a) || check_ssort(stack_a))
-		return;
 	if (stack_a->top == 3)
 	{
-		sort_3(stack_a, stack_b);
+		sort_3(stack_a);
 		return;
 	}
+	if (check_if_sorted(stack_a) || check_ssort(stack_a))
+		return;
 	butterfly(stack_a, stack_b);
 }
 
-void sort_3(StackInterface *stack_a, StackInterface *stack_b)
+void sort_3(StackInterface *stack_a)
 {
 	int min_index;
 	size_t index;
+	Stack *list;
 
-	push_stack(&stack_a, stack_b);
-	select_algorithm(stack_a, stack_b);
-	index = stack_b->first->index;
-	push_stack(&stack_b, stack_a);
-	if (index < stack_a->first->next->index)
-		return;
-	if (index > stack_a->last->index)
-	{
+	list = stack_a->first;
+	if(list->index > list->next->index && list->index > list->prev->index)
 		rotate(stack_a, 1);
-		return;
-	}
-	swap(stack_a, 1);
+	else if(list->next->index > list->index && list->next->index > list->prev->index)
+		reverse(stack_a, 1);
+	if(stack_a->first->index > stack_a->first->next->index)
+		swap(stack_a, 1);
 }
 
 short check_if_sorted(StackInterface *stack)

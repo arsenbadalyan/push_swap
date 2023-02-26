@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:25:28 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/25 19:46:09 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/26 13:00:34 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void create_stack(int *list, size_t size, StackInterface *istack)
 	temp = NULL;
 	while (istack->top < size)
 	{
-		stack = (Stack *)malloc(sizeof(*stack) * size);
+		stack = (Stack *)malloc(sizeof(*stack));
 		if (!stack)
 			return;
 		stack->data = list[istack->top];
