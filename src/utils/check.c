@@ -21,7 +21,7 @@ int *mkarr_check_doubles(char **argv, int argc, size_t size)
 	temp = size - 1;
 	num_list = (int *)malloc(sizeof(int) * size);
 	if (!num_list)
-		print_error();
+		return (NULL);
 	while (--argc > 0)
 	{
 		i = 0;
@@ -56,7 +56,6 @@ int check_doubles(int *num_list, size_t size)
 		{
 			if (num_list[i] == num_list[temp])
 			{
-				i = -1;
 				free_me((void *)&num_list, 0);
 				return (0);
 			}

@@ -6,13 +6,13 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:25:28 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/26 13:00:34 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:05:11 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void stack_chain(StackInterface *istack, Stack *current, Stack *prev, size_t size)
+void stack_chain(t_stack *istack, t_list *current, t_list *prev, size_t size)
 {
 	if (!istack || !current)
 		return;
@@ -31,18 +31,22 @@ void stack_chain(StackInterface *istack, Stack *current, Stack *prev, size_t siz
 	}
 }
 
-void create_stack(int *list, size_t size, StackInterface *istack)
+void create_stack(int *list, size_t size, t_stack *istack)
 {
-	Stack *stack;
-	Stack *temp;
+	t_list *stack;
+	t_list *temp;
 
 	istack->top = 0;
 	temp = NULL;
 	while (istack->top < size)
 	{
-		stack = (Stack *)malloc(sizeof(*stack));
+		stack = (t_list *)malloc(sizeof(*stack));
 		if (!stack)
-			return;
+		{
+			free(list);
+			istack->has_error = 1;
+			return;	
+		}
 		stack->data = list[istack->top];
 		stack_chain(istack, stack, temp, size);
 		temp = stack;
@@ -50,9 +54,10 @@ void create_stack(int *list, size_t size, StackInterface *istack)
 	}
 	if (stack)
 		index_stack(istack->first, size);
+	free(list);
 }
 
-void index_stack(Stack *stack, size_t size)
+void index_stack(t_list *stack, size_t size)
 {
 	int *temp;
 	size_t i;
@@ -92,11 +97,11 @@ void sort_list(int *stack, size_t size)
 	}
 }
 
-void indexing_stack(Stack *stack, int *temp, size_t size)
+void indexing_stack(t_list *stack, int *temp, size_t size)
 {
 	size_t i;
 	size_t j;
-	Stack *head;
+	t_list *head;
 
 	i = 0;
 	head = stack;

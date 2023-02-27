@@ -1,15 +1,15 @@
 #include "push_swap.h"
 
-void swap_together(StackInterface *stack_a, StackInterface *stack_b)
+void swap_together(t_stack *stack_a, t_stack *stack_b)
 {
     swap(stack_a, 0);
     swap(stack_b, 0);
     print_command('s', 's');
 }
 
-void swap(StackInterface *stack, short idf)
+void swap(t_stack *stack, short idf)
 {
-    Stack *list;
+    t_list *list;
     int tempData;
     size_t tempIndex;
 

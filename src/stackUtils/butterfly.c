@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void butterfly(StackInterface *stack_a, StackInterface *stack_b)
+void butterfly(t_stack *stack_a, t_stack *stack_b)
 {
 	int i;
 	if(stack_a->top <= 14)
@@ -25,10 +25,10 @@ void butterfly(StackInterface *stack_a, StackInterface *stack_b)
 	butterfly_reverse(stack_a, stack_b);
 }
 
-void butterfly_reverse(StackInterface *stack_a, StackInterface *stack_b)
+void butterfly_reverse(t_stack *stack_a, t_stack *stack_b)
 {
 	size_t index;
-	Stack *temp;
+	t_list *temp;
 
 	while(stack_b->top)
 	{
@@ -44,11 +44,11 @@ void butterfly_reverse(StackInterface *stack_a, StackInterface *stack_b)
 	}
 }
 
-void small_sort(StackInterface *stack_a, StackInterface *stack_b)
+void small_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int min;
-	Stack *temp;
-	Stack *s_min;
+	t_list *temp;
+	t_list *s_min;
 
 	while(stack_a->top > 3)
 	{
@@ -72,10 +72,10 @@ void small_sort(StackInterface *stack_a, StackInterface *stack_b)
 		push_stack(&stack_b, stack_a);
 }
 
-void go_top(StackInterface *stack, Stack *cur)
+void go_top(t_stack *stack, t_list *cur)
 {
 	size_t queue;
-	Stack *head;
+	t_list *head;
 
 	head = stack->first;
 	queue = 0;

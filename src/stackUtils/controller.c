@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void select_algorithm(StackInterface *stack_a, StackInterface *stack_b)
+void sel_alg(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a || !stack_b)
 		return;
@@ -22,11 +22,11 @@ void select_algorithm(StackInterface *stack_a, StackInterface *stack_b)
 	butterfly(stack_a, stack_b);
 }
 
-void sort_3(StackInterface *stack_a)
+void sort_3(t_stack *stack_a)
 {
 	int min_index;
 	size_t index;
-	Stack *list;
+	t_list *list;
 
 	list = stack_a->first;
 	if(list->index > list->next->index && list->index > list->prev->index)
@@ -37,9 +37,9 @@ void sort_3(StackInterface *stack_a)
 		swap(stack_a, 1);
 }
 
-short check_if_sorted(StackInterface *stack)
+short check_if_sorted(t_stack *stack)
 {
-	Stack *current;
+	t_list *current;
 	int cur_num;
 
 	current = stack->first->next;
@@ -54,10 +54,10 @@ short check_if_sorted(StackInterface *stack)
 	return (1);
 }
 
-short check_ssort(StackInterface *stack)
+short check_ssort(t_stack *stack)
 {
 	size_t index;
-	Stack *list;
+	t_list *list;
 
 	index = 0;
 	list = stack->first;

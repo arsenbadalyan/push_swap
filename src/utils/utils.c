@@ -1,9 +1,12 @@
 #include "push_swap.h"
 
-void print_error()
+void free_error(t_stack *a, t_stack *b)
 {
 	write(2, "Error\n", 6);
-	// system("leaks push_swap");
+	if(a)
+		free_stack(a);
+	if(b)
+		free_stack(b);
 	exit(1);
 }
 
@@ -19,24 +22,24 @@ size_t length(char *str)
 
 void free_me(void **addr, char **addr_2D)
 {
-	// size_t i;
+	size_t i;
 
-	// i = 0;
-	// if (addr_2D)
-	// {
-	// 	while (addr_2D[i])
-	// 	{
-	// 		free(addr_2D[i]);
-	// 		i++;
-	// 	}
-	// 	free(addr_2D);
-	// 	*addr_2D = 0x0;
-	// }
-	// if (addr)
-	// {
-	// 	free(*addr);
-	// 	*addr = 0x0;
-	// }
+	i = 0;
+	if (addr_2D)
+	{
+		while (addr_2D[i])
+		{
+			free(addr_2D[i]);
+			i++;
+		}
+		free(addr_2D);
+		*addr_2D = 0x0;
+	}
+	if (addr)
+	{
+		free(*addr);
+		*addr = 0x0;
+	}
 }
 
 char **splited_arr(char *str, char seperator)

@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void print_stack(StackInterface *stack, int all, char stack_name)
+void print_stack(t_stack *stack, int all, char stack_name)
 {
 	size_t i;
-	Stack *head;
+	t_list *head;
 
 	head = stack->first;
 	i = 0;
@@ -32,31 +32,33 @@ void print_stack(StackInterface *stack, int all, char stack_name)
 	}
 }
 
-StackInterface *init_stack(char name)
+t_stack *init_stack(char name)
 {
-	StackInterface *stack;
+	t_stack *stack;
 
-	stack = (StackInterface *)malloc(sizeof(StackInterface));
+	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
 	stack->first = NULL;
 	stack->last = NULL;
 	stack->top = 0;
 	stack->name = name;
+	stack->has_error = 0;
 	return (stack);
 }
 
-int start_sort(StackInterface *stack_a)
+int start_sort(t_stack *stack_a)
 {
-	StackInterface *stack_b;
+	t_stack *stack_b;
 
 	stack_b = init_stack('b');
 	if (!stack_b)
 		return (0);
-	// print_stack(stack_a, 0, stack_a->name);
-	// print_stack(stack_b, 0, stack_b->name);
-	select_algorithm(stack_a, stack_b);
-	// print_stack(stack_a, 0, stack_a->name);
+	print_stack(stack_a, 0, stack_a->name);
+	sel_alg(stack_a, stack_b);
+	print_stack(stack_a, 0, stack_a->name);
+	free_stack(stack_a);
+	free_stack(stack_b);
 	// print_stack(stack_b, 0, stack_b->name);
 	return (1);
 }
@@ -66,7 +68,7 @@ int main(int argc, char **argv)
 {
 	int *list;
 	size_t argument_size;
-	StackInterface *istack_a;
+	t_stack *istack_a;
 	istack_a = init_stack('a');
 	if (!istack_a || argc <= 1)
 		return (1);
@@ -75,13 +77,13 @@ int main(int argc, char **argv)
 	{
 		list = mkarr_check_doubles(argv, argc, argument_size);
 		if (!list)
-			print_error();
+			free_error(istack_a, 0);
 		create_stack(list, argument_size, istack_a);
-		if (!start_sort(istack_a))
+		if (istack_a->has_error || !start_sort(istack_a))
 			return (1);
 	}
 	else
-		print_error();
-	// system("leaks push_swap");
+		free_error(istack_a, 0);
+	system("leaks push_swap");
 	return (0);
 }

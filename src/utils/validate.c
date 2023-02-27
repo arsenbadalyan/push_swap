@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 11:18:08 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/26 16:15:27 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:35:28 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ short	check(char *str)
 	long long	atoi_check;
 	size_t		len;
 	size_t		i;
-
+	char *tmp;
 	i = 0;
+
+	tmp = str;
 	if ((str[i] == '+' || str[i] == '-') && str[i + 1])
 		str++;
 	str = check_zeros(str);
@@ -63,7 +65,7 @@ short	check(char *str)
 			return (0);
 		i++;
 	}
-	atoi_check = my_atoi(str);
+	atoi_check = my_atoi(tmp);
 	if (atoi_check < INT_MIN || atoi_check > INT_MAX)
 		return (0);
 	return (1);

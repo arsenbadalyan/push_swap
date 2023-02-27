@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void clone_stack(Stack *dest, Stack *src, int isAll)
+void clone_stack(t_list *dest, t_list *src, int isAll)
 {
 	dest->data = src->data;
 	dest->index = src->index;
@@ -14,24 +14,17 @@ void clone_stack(Stack *dest, Stack *src, int isAll)
 	dest->prev = NULL;
 }
 
-void free_stack(StackInterface *stack)
+void free_stack(t_stack *stack)
 {
-	Stack *list;
-	int i;
-
-	i = 0;
-	list = stack->first;
-	if (!list)
-		return;
-	while (list[i].data != stack->first->data && i != 0)
+	if(stack->top > 0)
 	{
-		free((list + i));
-		i++;
+		while(stack->top)
+			pop(stack, &stack->first);
 	}
-	free(list);
+	free(stack);
 }
 
-void make_stack_empty(StackInterface *stack)
+void make_stack_empty(t_stack *stack)
 {
 	if (!stack)
 		return;
@@ -39,9 +32,9 @@ void make_stack_empty(StackInterface *stack)
 	stack->last = NULL;
 }
 
-void pop(StackInterface *istack, Stack **p_stack)
+void pop(t_stack *istack, t_list **p_stack)
 {
-	Stack *stack;
+	t_list *stack;
 
 	stack = *p_stack;
 	if (!istack || !stack)
@@ -61,13 +54,16 @@ void pop(StackInterface *istack, Stack **p_stack)
 	free_me((void *)&stack, 0);
 }
 
-void push(StackInterface *istack, Stack *stack)
+void push(t_stack *istack, t_list *stack)
 {
-	Stack *copy;
+	t_list *copy;
 
-	copy = (Stack *)malloc(sizeof(*copy));
+	copy = (t_list *)malloc(sizeof(*copy));
 	if (!copy)
-		return; // TODO: clean all logic
+	{
+		istack->has_error = 1;
+		return;
+	}
 	clone_stack(copy, stack, 0);
 	istack->top++;
 	if (!istack->first)

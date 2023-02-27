@@ -1,18 +1,15 @@
 #include "push_swap.h"
 
-void push_stack(StackInterface **fromStack, StackInterface *toStack)
+void push_stack(t_stack **fromStack, t_stack *toStack)
 {
-	StackInterface *from_stack;
+	t_stack *from_stack;
 
 	from_stack = *fromStack;
 	if (!from_stack->first)
 		return;
-	// puts("------------------------------------");
 	push(toStack, from_stack->first);
-	// print_stack(from_stack, 0, from_stack->name);
-    // print_stack(toStack, 0, toStack->name);
 	pop(from_stack, &from_stack->first);
-	// print_stack(from_stack, 0, from_stack->name);
-    // print_stack(toStack, 0, toStack->name);
 	print_command('p', toStack->name);
+	if(from_stack->has_error)
+		free_error(from_stack, toStack);
 }

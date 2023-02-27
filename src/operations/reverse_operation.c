@@ -1,13 +1,13 @@
 #include "push_swap.h"
 
-void reverse_together(StackInterface *s1, StackInterface *s2)
+void reverse_together(t_stack *s1, t_stack *s2)
 {
     reverse(s1, 0);
     reverse(s2, 0);
     print_command_adn('r', 'r', 'r');
 }
 
-void reverse(StackInterface *stack, short idf)
+void reverse(t_stack *stack, short idf)
 {
     if (stack->top > 1 && stack->first && stack->last)
     {
