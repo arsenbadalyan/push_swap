@@ -2,34 +2,34 @@
 
 void print_stack(StackInterface *stack, int all, char stack_name)
 {
-	// size_t i;
-	// Stack *head;
+	size_t i;
+	Stack *head;
 
-	// head = stack->first;
-	// i = 0;
-	// if (all && stack->first)
-	// {
-	// 	while (i < stack->top)
-	// 	{
-	// 		puts("-----------");
-	// 		printf("Data:  %d\n", head->data);
-	// 		printf("Index: %lu\n", head->index);
-	// 		puts("-----------");
-	// 		i++;
-	// 		head = head->next;
-	// 	}
-	// }
-	// else
-	// {
-	// 	while (i < stack->top)
-	// 	{
-	// 		printf("|%d|\n", head->data);
-	// 		head = head->next;
-	// 		i++;
-	// 	}
-	// 	puts("---");
-	// 	printf(" %c\n", stack_name);
-	// }
+	head = stack->first;
+	i = 0;
+	if (all && stack->first)
+	{
+		while (i < stack->top)
+		{
+			puts("-----------");
+			printf("Data:  %d\n", head->data);
+			printf("Index: %lu\n", head->index);
+			puts("-----------");
+			i++;
+			head = head->next;
+		}
+	}
+	else
+	{
+		while (i < stack->top)
+		{
+			printf("|%d|\n", head->data);
+			head = head->next;
+			i++;
+		}
+		puts("---");
+		printf(" %c\n", stack_name);
+	}
 }
 
 StackInterface *init_stack(char name)
@@ -37,7 +37,7 @@ StackInterface *init_stack(char name)
 	StackInterface *stack;
 
 	stack = (StackInterface *)malloc(sizeof(StackInterface));
-	if(!stack)
+	if (!stack)
 		return (NULL);
 	stack->first = NULL;
 	stack->last = NULL;
@@ -67,7 +67,6 @@ int main(int argc, char **argv)
 	int *list;
 	size_t argument_size;
 	StackInterface *istack_a;
-
 	istack_a = init_stack('a');
 	if (!istack_a || argc <= 1)
 		return (1);

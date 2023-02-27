@@ -9,34 +9,34 @@ void print_error()
 
 size_t length(char *str)
 {
-    size_t len;
+	size_t len;
 
-    len = 0;
-    while (str[len])
-        len++;
-    return (len);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
 void free_me(void **addr, char **addr_2D)
 {
-	size_t i;
+	// size_t i;
 
-	i = 0;
-	if (addr_2D)
-	{
-		while (addr_2D[i])
-		{
-			free(addr_2D[i]);
-			i++;
-		}
-		free(addr_2D);
-		*addr_2D = 0x0;
-	}
-	if (addr)
-	{
-		free(*addr);
-		*addr = 0x0;
-	}
+	// i = 0;
+	// if (addr_2D)
+	// {
+	// 	while (addr_2D[i])
+	// 	{
+	// 		free(addr_2D[i]);
+	// 		i++;
+	// 	}
+	// 	free(addr_2D);
+	// 	*addr_2D = 0x0;
+	// }
+	// if (addr)
+	// {
+	// 	free(*addr);
+	// 	*addr = 0x0;
+	// }
 }
 
 char **splited_arr(char *str, char seperator)

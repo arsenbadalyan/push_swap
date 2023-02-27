@@ -31,7 +31,7 @@ fclean: clean
 	@echo "$(GREEN)Done!$(RESET)"
 
 test: $(NAME)
-	$(eval ARG = $(shell jot -r 5 0 2000000))
+	$(eval ARG = $(shell jot -r 14 0 2000000))
 	./push_swap $(ARG) | ./checker_Mac $(ARG)
 	@echo -n "Instructions: "
 	@./push_swap $(ARG) | wc -l

@@ -68,7 +68,8 @@ short check_if_sorted(StackInterface *stack);
 short check_ssort(StackInterface *stack);
 void butterfly(StackInterface *stack_a, StackInterface *stack_b);
 void butterfly_reverse(StackInterface *stack_a, StackInterface *stack_b);
-
+void go_top(StackInterface *stack, Stack *cur);
+void small_sort(StackInterface *stack_a, StackInterface *stack_b);
 // Get N
 size_t    get_n(size_t i);
 size_t    ft_ln(size_t nb);
