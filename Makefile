@@ -1,9 +1,11 @@
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 SRCS = $(shell find ./src -name "*.c")
+SRCS_BONUS = $(shell find ./bonus -name "*.c")
 INCLUDE = -I ./include/
 RM = rm -rf
 OUT_FILE = push_swap
+OUT_FILE_BONUS = checker
 
 # Colors
 RESET  = \033[0
@@ -17,6 +19,11 @@ all:
 	@echo "$(YELLOW)Compiling all files...$(RESET)"
 	@echo "$(YELLOW)Please Wait...$(RESET)"
 	@$(CC) $(INCLUDE) $(SRCS) -o $(OUT_FILE)
+	@echo "$(GREEN)Done!$(RESET)"
+bonus: Makefile
+	@echo "$(YELLOW)Compiling all files...$(RESET)"
+	@echo "$(YELLOW)Please Wait...$(RESET)"
+	@$(CC) $(INCLUDE) $(SRCS_BONUS) -o $(OUT_FILE_BONUS)
 	@echo "$(GREEN)Done!$(RESET)"
 flag:
 	@echo "$(GREEN)Compiling all files...$(RESET)"

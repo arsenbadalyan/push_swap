@@ -6,16 +6,16 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:25:28 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 20:05:11 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:11:58 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void stack_chain(t_stack *istack, t_list *current, t_list *prev, size_t size)
+void	stack_chain(t_stack *istack, t_list *current, t_list *prev, size_t size)
 {
 	if (!istack || !current)
-		return;
+		return ;
 	if (istack->top == 0)
 		istack->first = current;
 	else
@@ -31,10 +31,10 @@ void stack_chain(t_stack *istack, t_list *current, t_list *prev, size_t size)
 	}
 }
 
-void create_stack(int *list, size_t size, t_stack *istack)
+void	create_stack(int *list, size_t size, t_stack *istack)
 {
-	t_list *stack;
-	t_list *temp;
+	t_list	*stack;
+	t_list	*temp;
 
 	istack->top = 0;
 	temp = NULL;
@@ -45,7 +45,7 @@ void create_stack(int *list, size_t size, t_stack *istack)
 		{
 			free(list);
 			istack->has_error = 1;
-			return;	
+			return ;
 		}
 		stack->data = list[istack->top];
 		stack_chain(istack, stack, temp, size);
@@ -57,10 +57,10 @@ void create_stack(int *list, size_t size, t_stack *istack)
 	free(list);
 }
 
-void index_stack(t_list *stack, size_t size)
+void	index_stack(t_list *stack, size_t size)
 {
-	int *temp;
-	size_t i;
+	int		*temp;
+	size_t	i;
 
 	i = 0;
 	temp = (int *)malloc(sizeof(int) * size);
@@ -77,10 +77,10 @@ void index_stack(t_list *stack, size_t size)
 	free(temp);
 }
 
-void sort_list(int *stack, size_t size)
+void	sort_list(int *stack, size_t size)
 {
-	size_t i;
-	int temp;
+	size_t	i;
+	int		temp;
 
 	i = 0;
 	while (i < size - 1)
@@ -91,17 +91,17 @@ void sort_list(int *stack, size_t size)
 			stack[i] = stack[i + 1];
 			stack[i + 1] = temp;
 			i = 0;
-			continue;
+			continue ;
 		}
 		i++;
 	}
 }
 
-void indexing_stack(t_list *stack, int *temp, size_t size)
+void	indexing_stack(t_list *stack, int *temp, size_t size)
 {
-	size_t i;
-	size_t j;
-	t_list *head;
+	size_t	i;
+	size_t	j;
+	t_list	*head;
 
 	i = 0;
 	head = stack;

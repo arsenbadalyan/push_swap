@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:33:45 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 20:11:47 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:15:52 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef struct s_list {
 
 typedef struct s_stack
 {
-	size_t	top;
+	size_t			top;
 	struct s_list	*first;
 	struct s_list	*last;
-	char	name;
-	short	has_error;
+	char			name;
+	short			has_error;
 }	t_stack;
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_actions.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 21:08:24 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/02/27 21:10:22 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void clone_stack(t_list *dest, t_list *src, int isAll)
+void	clone_stack(t_list *dest, t_list *src, int isAll)
 {
 	dest->data = src->data;
 	dest->index = src->index;
@@ -8,37 +20,37 @@ void clone_stack(t_list *dest, t_list *src, int isAll)
 	{
 		dest->next = src->next;
 		dest->prev = src->prev;
-		return;
+		return ;
 	}
 	dest->next = NULL;
 	dest->prev = NULL;
 }
 
-void free_stack(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
-	if(stack->top > 0)
+	if (stack->top > 0)
 	{
-		while(stack->top)
+		while (stack->top)
 			pop(stack, &stack->first);
 	}
 	free(stack);
 }
 
-void make_stack_empty(t_stack *stack)
+void	make_stack_empty(t_stack *stack)
 {
 	if (!stack)
-		return;
+		return ;
 	stack->first = NULL;
 	stack->last = NULL;
 }
 
-void pop(t_stack *istack, t_list **p_stack)
+void	pop(t_stack *istack, t_list **p_stack)
 {
-	t_list *stack;
+	t_list	*stack;
 
 	stack = *p_stack;
 	if (!istack || !stack)
-		return;
+		return ;
 	if (stack->next->data == stack->data)
 		make_stack_empty(istack);
 	else
@@ -54,15 +66,15 @@ void pop(t_stack *istack, t_list **p_stack)
 	free_me((void *)&stack, 0);
 }
 
-void push(t_stack *istack, t_list *stack)
+void	push(t_stack *istack, t_list *stack)
 {
-	t_list *copy;
+	t_list	*copy;
 
 	copy = (t_list *)malloc(sizeof(*copy));
 	if (!copy)
 	{
 		istack->has_error = 1;
-		return;
+		return ;
 	}
 	clone_stack(copy, stack, 0);
 	istack->top++;
@@ -72,7 +84,7 @@ void push(t_stack *istack, t_list *stack)
 		istack->last = copy;
 		istack->first->next = istack->first;
 		istack->first->prev = istack->first;
-		return;
+		return ;
 	}
 	istack->first->prev = copy;
 	istack->last->next = copy;

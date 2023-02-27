@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 11:18:08 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 18:35:28 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:30:54 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ short	check(char *str)
 	long long	atoi_check;
 	size_t		len;
 	size_t		i;
-	char *tmp;
-	i = 0;
+	char		*tmp;
 
+	i = 0;
 	tmp = str;
 	if ((str[i] == '+' || str[i] == '-') && str[i + 1])
 		str++;

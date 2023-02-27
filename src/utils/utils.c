@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 20:30:16 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/02/27 20:30:17 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void free_error(t_stack *a, t_stack *b)
+void	free_error(t_stack *a, t_stack *b)
 {
 	write(2, "Error\n", 6);
-	if(a)
+	if (a)
 		free_stack(a);
-	if(b)
+	if (b)
 		free_stack(b);
 	exit(1);
 }
 
-size_t length(char *str)
+size_t	length(char *str)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (str[len])
@@ -20,9 +32,9 @@ size_t length(char *str)
 	return (len);
 }
 
-void free_me(void **addr, char **addr_2D)
+void	free_me(void **addr, char **addr_2D)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (addr_2D)
@@ -42,9 +54,9 @@ void free_me(void **addr, char **addr_2D)
 	}
 }
 
-char **splited_arr(char *str, char seperator)
+char	**splited_arr(char *str, char seperator)
 {
-	char **splited;
+	char	**splited;
 
 	splited = ft_split(str, seperator);
 	if (!splited)

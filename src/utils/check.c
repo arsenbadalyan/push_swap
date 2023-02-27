@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 20:26:50 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/02/27 21:57:15 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-char *check_zeros(char *number)
+char	*check_zeros(char *number)
 {
 	if (*number == '0' && *(number + 1))
 	{
@@ -11,12 +23,32 @@ char *check_zeros(char *number)
 	return (number);
 }
 
-int *mkarr_check_doubles(char **argv, int argc, size_t size)
+short	check_helper(char **argv, int argc, int *num_list, size_t *temp)
 {
-	int *num_list;
-	size_t temp;
-	long long i;
-	char **splited;
+	int		i;
+	char	**splited;
+
+	i = 0;
+	splited = splited_arr(argv[argc], ' ');
+	if (!splited)
+		return (-1);
+	while (splited[i])
+		i++;
+	while (i > 0)
+	{
+		i--;
+		num_list[*temp] = (int)my_atoi(splited[i]);
+		*temp = *temp - 1;
+	}
+	free_me(0, splited);
+	return (0);
+}
+
+int	*mkarr_check_doubles(char **argv, int argc, size_t size)
+{
+	int			*num_list;
+	size_t		temp;
+	long long	i;
 
 	temp = size - 1;
 	num_list = (int *)malloc(sizeof(int) * size);
@@ -24,29 +56,21 @@ int *mkarr_check_doubles(char **argv, int argc, size_t size)
 		return (NULL);
 	while (--argc > 0)
 	{
-		i = 0;
-		splited = splited_arr(argv[argc], ' ');
-		if (!splited)
-			return (0);
-		while (splited[i])
-			i++;
-		while (i > 0)
+		if (check_helper(argv, argc, num_list, &temp))
 		{
-			i--;
-			num_list[temp] = (int)my_atoi(splited[i]);
-			temp--;
+			free(num_list);
+			return (NULL);
 		}
-		free_me(0, splited);
 	}
 	if (!check_doubles(num_list, size))
 		return (NULL);
 	return (num_list);
 }
 
-int check_doubles(int *num_list, size_t size)
+int	check_doubles(int *num_list, size_t size)
 {
-	size_t i;
-	size_t temp;
+	size_t	i;
+	size_t	temp;
 
 	i = 0;
 	while (i < size - 1)
@@ -66,10 +90,10 @@ int check_doubles(int *num_list, size_t size)
 	return (1);
 }
 
-long long my_atoi(char *number)
+long long	my_atoi(char *number)
 {
-	int sign;
-	long long result;
+	int			sign;
+	long long	result;
 
 	sign = 1;
 	result = 0;

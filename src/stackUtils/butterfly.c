@@ -1,23 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   butterfly.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 20:32:27 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/02/27 21:03:45 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void butterfly(t_stack *stack_a, t_stack *stack_b)
+void	butterfly(t_stack *stack_a, t_stack *stack_b)
 {
-	int i;
-	if(stack_a->top <= 14)
+	int	i;
+
+	if (stack_a->top <= 14)
 	{
 		small_sort(stack_a, stack_b);
-		return;
+		return ;
 	}
 	i = get_n(stack_a->top);
-	while(stack_a->top)
+	while (stack_a->top)
 	{
-		if(stack_a->first->index <= stack_b->top)
+		if (stack_a->first->index <= stack_b->top)
 		{
 			push_stack(&stack_a, stack_b);
-			if(stack_b->top > 1)
+			if (stack_b->top > 1)
 				rotate(stack_b, 1);
 		}
-		else if(stack_a->first->index <= stack_b->top + i)
+		else if (stack_a->first->index <= stack_b->top + i)
 			push_stack(&stack_a, stack_b);
 		else
 			rotate(stack_a, 1);
@@ -25,16 +38,16 @@ void butterfly(t_stack *stack_a, t_stack *stack_b)
 	butterfly_reverse(stack_a, stack_b);
 }
 
-void butterfly_reverse(t_stack *stack_a, t_stack *stack_b)
+void	butterfly_reverse(t_stack *stack_a, t_stack *stack_b)
 {
-	size_t index;
-	t_list *temp;
+	size_t	index;
+	t_list	*temp;
 
-	while(stack_b->top)
+	while (stack_b->top)
 	{
 		index = 0;
 		temp = stack_b->first;
-		while(temp->index != stack_b->top - 1)
+		while (temp->index != stack_b->top - 1)
 		{
 			temp = temp->next;
 			index++;
@@ -44,20 +57,20 @@ void butterfly_reverse(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void small_sort(t_stack *stack_a, t_stack *stack_b)
+void	small_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	int min;
-	t_list *temp;
-	t_list *s_min;
+	int		min;
+	t_list	*temp;
+	t_list	*s_min;
 
-	while(stack_a->top > 3)
+	while (stack_a->top > 3)
 	{
 		temp = stack_a->first->next;
 		min = stack_a->first->index;
 		s_min = stack_a->first;
-		while(temp->index != stack_a->first->index)
+		while (temp->index != stack_a->first->index)
 		{
-			if(temp->index < min)
+			if (temp->index < min)
 			{
 				s_min = temp;
 				min = temp->index;
@@ -68,14 +81,14 @@ void small_sort(t_stack *stack_a, t_stack *stack_b)
 		push_stack(&stack_a, stack_b);
 	}
 	sort_3(stack_a);
-	while(stack_b->top)
+	while (stack_b->top)
 		push_stack(&stack_b, stack_a);
 }
 
-void go_top(t_stack *stack, t_list *cur)
+void	go_top(t_stack *stack, t_list *cur)
 {
-	size_t queue;
-	t_list *head;
+	size_t	queue;
+	t_list	*head;
 
 	head = stack->first;
 	queue = 0;
@@ -91,18 +104,3 @@ void go_top(t_stack *stack, t_list *cur)
 		while (stack->first->index != cur->index)
 			rotate(stack, 1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 20:29:24 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/02/27 20:29:25 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 size_t	count_allocate_size(const char *s, char c)
@@ -84,7 +96,7 @@ void	allocate_split(const char *s, char **str, char c, size_t allocated_size)
 	}
 }
 
-char **ft_split(const char *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	char	**splited_str;
 	size_t	allocated_size;

@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:39:17 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 20:05:19 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:56:04 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void		free_error(t_stack *a, t_stack *b);
 
 // Checking
 long long	my_atoi(char *number);
+short		check_helper(char **argv, int argc, int *num_list, size_t *temp);
 int			*mkarr_check_doubles(char **argv, int argc, size_t size);
 int			check_doubles(int *num_list, size_t size);
 size_t		validate_arguments(int argc, char **argv);

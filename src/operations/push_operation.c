@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_operation.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 20:22:01 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/02/27 20:23:09 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void push_stack(t_stack **fromStack, t_stack *toStack)
+void	push_stack(t_stack **fromStack, t_stack *toStack)
 {
-	t_stack *from_stack;
+	t_stack	*from_stack;
 
 	from_stack = *fromStack;
+	print_command('p', toStack->name);
 	if (!from_stack->first)
-		return;
+		return ;
 	push(toStack, from_stack->first);
 	pop(from_stack, &from_stack->first);
-	print_command('p', toStack->name);
-	if(from_stack->has_error)
+	if (from_stack->has_error)
 		free_error(from_stack, toStack);
 }
