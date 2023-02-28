@@ -15,15 +15,15 @@ YELLOW = \033[33m
 
 
 #TODO: remove flag rule and add flags in 
-all:
+all: Makefile
 	@echo "$(YELLOW)Compiling all files...$(RESET)"
 	@echo "$(YELLOW)Please Wait...$(RESET)"
-	@$(CC) $(INCLUDE) $(SRCS) -o $(OUT_FILE)
+	@$(CC) $(INCLUDE) $(SRCS) main.c -o $(OUT_FILE)
 	@echo "$(GREEN)Done!$(RESET)"
 bonus: Makefile
 	@echo "$(YELLOW)Compiling all files...$(RESET)"
 	@echo "$(YELLOW)Please Wait...$(RESET)"
-	@$(CC) $(INCLUDE) $(SRCS_BONUS) -o $(OUT_FILE_BONUS)
+	@$(CC) $(INCLUDE) $(SRCS) $(SRCS_BONUS) -o $(OUT_FILE_BONUS)
 	@echo "$(GREEN)Done!$(RESET)"
 flag:
 	@echo "$(GREEN)Compiling all files...$(RESET)"
