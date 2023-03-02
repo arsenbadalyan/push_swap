@@ -12,11 +12,12 @@
 
 #include "push_swap.h"
 
-void	reverse_together(t_stack *s1, t_stack *s2)
+void	reverse_together(t_stack *s1, t_stack *s2, short idf)
 {
 	reverse(s1, 0);
 	reverse(s2, 0);
-	print_command_adn('r', 'r', 'r');
+	if(idf)
+		print_command_adn('r', 'r', 'r');
 }
 
 void	reverse(t_stack *stack, short idf)

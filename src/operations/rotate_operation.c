@@ -12,11 +12,12 @@
 
 #include "push_swap.h"
 
-void	rotate_together(t_stack *s1, t_stack *s2)
+void	rotate_together(t_stack *s1, t_stack *s2, short idf)
 {
 	rotate(s1, 0);
 	rotate(s2, 0);
-	print_command('r', 'r');
+	if(idf)
+		print_command('r', 'r');
 }
 
 void	rotate(t_stack *stack, short idf)

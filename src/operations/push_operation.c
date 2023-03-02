@@ -12,12 +12,13 @@
 
 #include "push_swap.h"
 
-void	push_stack(t_stack **fromStack, t_stack *toStack)
+void	push_stack(t_stack **fromStack, t_stack *toStack, short idf)
 {
 	t_stack	*from_stack;
 
 	from_stack = *fromStack;
-	print_command('p', toStack->name);
+	if(idf)
+		print_command('p', toStack->name);
 	if (!from_stack->first)
 		return ;
 	push(toStack, from_stack->first);

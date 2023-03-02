@@ -12,11 +12,12 @@
 
 #include "push_swap.h"
 
-void	swap_together(t_stack *stack_a, t_stack *stack_b)
+void	swap_together(t_stack *stack_a, t_stack *stack_b, short idf)
 {
 	swap(stack_a, 0);
 	swap(stack_b, 0);
-	print_command('s', 's');
+	if(idf)
+		print_command('s', 's');
 }
 
 void	swap(t_stack *stack, short idf)

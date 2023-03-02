@@ -45,7 +45,7 @@ void	free_me(void **addr, char **addr_2D)
 			i++;
 		}
 		free(addr_2D);
-		*addr_2D = 0x0;
+		addr_2D = 0x0;
 	}
 	if (addr)
 	{

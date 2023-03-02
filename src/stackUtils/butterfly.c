@@ -26,12 +26,12 @@ void	butterfly(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (stack_a->first->index <= stack_b->top)
 		{
-			push_stack(&stack_a, stack_b);
+			push_stack(&stack_a, stack_b, 1);
 			if (stack_b->top > 1)
 				rotate(stack_b, 1);
 		}
 		else if (stack_a->first->index <= stack_b->top + i)
-			push_stack(&stack_a, stack_b);
+			push_stack(&stack_a, stack_b, 1);
 		else
 			rotate(stack_a, 1);
 	}
@@ -53,7 +53,7 @@ void	butterfly_reverse(t_stack *stack_a, t_stack *stack_b)
 			index++;
 		}
 		go_top(stack_b, temp);
-		push_stack(&stack_b, stack_a);
+		push_stack(&stack_b, stack_a, 1);
 	}
 }
 
@@ -78,11 +78,11 @@ void	small_sort(t_stack *stack_a, t_stack *stack_b)
 			temp = temp->next;
 		}
 		go_top(stack_a, s_min);
-		push_stack(&stack_a, stack_b);
+		push_stack(&stack_a, stack_b, 1);
 	}
 	sort_3(stack_a);
 	while (stack_b->top)
-		push_stack(&stack_b, stack_a);
+		push_stack(&stack_b, stack_a, 1);
 }
 
 void	go_top(t_stack *stack, t_list *cur)

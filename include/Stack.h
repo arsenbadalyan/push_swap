@@ -41,8 +41,9 @@ void			print_command(char first, char sec);
 void			print_command_adn(char first, char sec, char additional);
 
 // TODO: delete
-// void    print_stack(t_stack *stack, int all, char stack_name);
 
+
+void print_stack(t_stack *stack);
 t_stack			*init_stack(char name);
 void			create_stack(int *list, size_t size, t_stack *istack);
 void			index_stack(t_list *stack, size_t size);
@@ -52,12 +53,12 @@ void			free_stack(t_stack *stack);
 
 // Operations
 void			swap(t_stack *stack, short idf);
-void			swap_together(t_stack *stack_a, t_stack *stack_b);
-void			push_stack(t_stack **fromStack, t_stack *toStack);
+void			swap_together(t_stack *stack_a, t_stack *stack_b, short idf);
+void	push_stack(t_stack **fromStack, t_stack *toStack, short idf);
 void			rotate(t_stack *stack, short idf);
-void			rotate_together(t_stack *s1, t_stack *s2);
+void			rotate_together(t_stack *s1, t_stack *s2, short idf);
 void			reverse(t_stack *stack, short idf);
-void			reverse_together(t_stack *s1, t_stack *s2);
+void			reverse_together(t_stack *s1, t_stack *s2, short idf);
 void			make_stack_empty(t_stack *stack);
 void			pop(t_stack *istack, t_list **p_stack);
 void			push(t_stack *istack, t_list *stack);
@@ -75,4 +76,16 @@ void			small_sort(t_stack *stack_a, t_stack *stack_b);
 size_t			get_n(size_t i);
 size_t			ft_ln(size_t nb);
 size_t			ft_sqrt(size_t nb);
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// >>>>>>>>>>> Checker <<<<<<<<<<<
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+int ft_strncmp(const char *str1, const char *str2, size_t n);
+char **copy_list(char **list, char *line);
+char **get_lines(char *line, char **list);
+short true_arrangement(t_stack *stack);
+void select_function(t_stack *a, t_stack *b, char *command);
+void check_sort(t_stack *stack_a, char **commands);
+short check_input(int argc, char **argv, char **commands);
+
 #endif
