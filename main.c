@@ -19,9 +19,7 @@ int	start_sort(t_stack *stack_a)
 	stack_b = init_stack('b');
 	if (!stack_b)
 		return (0);
-	// print_stack(stack_a, 0, stack_a->name);
 	sel_alg(stack_a, stack_b);
-	// print_stack(stack_a, 0, stack_a->name);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (1);

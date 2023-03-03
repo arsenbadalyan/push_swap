@@ -45,4 +45,15 @@ size_t		validate_arguments(int argc, char **argv);
 char		*check_zeros(char *number);
 short		check(char *str);
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// >>>>>>>>>>> Checker <<<<<<<<<<<
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+int ft_strncmp(const char *str1, const char *str2, size_t n);
+char **copy_list(char **list, char *line);
+char **get_lines(char *line, char **list);
+short true_arrangement(t_stack *stack);
+void select_function(t_stack *a, t_stack *b, char *command);
+void check_sort(t_stack *stack_a, char **commands);
+short check_input(int argc, char **argv, char **commands);
+
 #endif

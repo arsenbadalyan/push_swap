@@ -40,9 +40,6 @@ typedef struct s_stack
 void			print_command(char first, char sec);
 void			print_command_adn(char first, char sec, char additional);
 
-// TODO: delete
-
-
 void print_stack(t_stack *stack);
 t_stack			*init_stack(char name);
 void			create_stack(int *list, size_t size, t_stack *istack);
@@ -54,7 +51,7 @@ void			free_stack(t_stack *stack);
 // Operations
 void			swap(t_stack *stack, short idf);
 void			swap_together(t_stack *stack_a, t_stack *stack_b, short idf);
-void	push_stack(t_stack **fromStack, t_stack *toStack, short idf);
+void			push_stack(t_stack **fromStack, t_stack *toStack, short idf);
 void			rotate(t_stack *stack, short idf);
 void			rotate_together(t_stack *s1, t_stack *s2, short idf);
 void			reverse(t_stack *stack, short idf);
@@ -76,16 +73,5 @@ void			small_sort(t_stack *stack_a, t_stack *stack_b);
 size_t			get_n(size_t i);
 size_t			ft_ln(size_t nb);
 size_t			ft_sqrt(size_t nb);
-
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// >>>>>>>>>>> Checker <<<<<<<<<<<
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-int ft_strncmp(const char *str1, const char *str2, size_t n);
-char **copy_list(char **list, char *line);
-char **get_lines(char *line, char **list);
-short true_arrangement(t_stack *stack);
-void select_function(t_stack *a, t_stack *b, char *command);
-void check_sort(t_stack *stack_a, char **commands);
-short check_input(int argc, char **argv, char **commands);
 
 #endif
