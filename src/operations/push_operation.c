@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:22:01 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 20:23:09 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:28:15 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	push_stack(t_stack **fromStack, t_stack *toStack, short idf)
 	t_stack	*from_stack;
 
 	from_stack = *fromStack;
-	if(idf)
+	if (idf)
 		print_command('p', toStack->name);
 	if (!from_stack->first)
 		return ;

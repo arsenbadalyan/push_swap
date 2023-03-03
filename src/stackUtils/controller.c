@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 21:05:28 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 21:06:19 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:06:17 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	sel_alg(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_3(t_stack *stack_a)
 {
-	int		min_index;
-	size_t	index;
 	t_list	*list;
 
 	list = stack_a->first;
@@ -53,7 +51,7 @@ void	sort_3(t_stack *stack_a)
 short	check_if_sorted(t_stack *stack)
 {
 	t_list	*current;
-	int		cur_num;
+	size_t	cur_num;
 
 	current = stack->first->next;
 	cur_num = stack->first->index;

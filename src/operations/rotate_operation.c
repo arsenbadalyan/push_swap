@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:22:07 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 20:24:06 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:28:53 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate_together(t_stack *s1, t_stack *s2, short idf)
 {
 	rotate(s1, 0);
 	rotate(s2, 0);
-	if(idf)
+	if (idf)
 		print_command('r', 'r');
 }
 

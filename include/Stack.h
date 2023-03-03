@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:33:45 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 21:15:52 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:27:37 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_stack
 void			print_command(char first, char sec);
 void			print_command_adn(char first, char sec, char additional);
 
-void print_stack(t_stack *stack);
+void			print_stack(t_stack *stack);
 t_stack			*init_stack(char name);
 void			create_stack(int *list, size_t size, t_stack *istack);
 void			index_stack(t_list *stack, size_t size);

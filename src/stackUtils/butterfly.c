@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:32:27 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 21:03:45 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:05:21 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	butterfly_reverse(t_stack *stack_a, t_stack *stack_b)
 
 void	small_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	int		min;
+	size_t	min;
 	t_list	*temp;
 	t_list	*s_min;
 

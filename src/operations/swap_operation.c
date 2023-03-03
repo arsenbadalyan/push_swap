@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:22:09 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 20:25:24 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:28:57 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap_together(t_stack *stack_a, t_stack *stack_b, short idf)
 {
 	swap(stack_a, 0);
 	swap(stack_b, 0);
-	if(idf)
+	if (idf)
 		print_command('s', 's');
 }
 

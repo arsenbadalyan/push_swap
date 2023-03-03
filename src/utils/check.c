@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:26:50 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 21:57:15 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:06:33 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	*mkarr_check_doubles(char **argv, int argc, size_t size)
 {
 	int			*num_list;
 	size_t		temp;
-	long long	i;
 
 	temp = size - 1;
 	num_list = (int *)malloc(sizeof(int) * size);

@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:30:16 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 20:30:17 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/04 00:52:44 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	free_error(t_stack *a, t_stack *b)
 		free_stack(a);
 	if (b)
 		free_stack(b);
+	system("leaks checker");
 	exit(1);
 }
 

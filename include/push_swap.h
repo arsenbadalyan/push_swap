@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:39:17 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/02/27 21:56:04 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:27:16 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ short		check(char *str);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // >>>>>>>>>>> Checker <<<<<<<<<<<
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-int ft_strncmp(const char *str1, const char *str2, size_t n);
-char **copy_list(char **list, char *line);
-char **get_lines(char *line, char **list);
-short true_arrangement(t_stack *stack);
-void select_function(t_stack *a, t_stack *b, char *command);
-void check_sort(t_stack *stack_a, char **commands);
-short check_input(int argc, char **argv, char **commands);
+int			ft_strncmp(const char *str1, const char *str2, size_t n);
+char		**copy_list(char **list, char *line);
+char		**get_lines(char *line, char **list);
+short		true_arrangement(t_stack *stack);
+void		select_function(t_stack *a, t_stack *b, char *command);
+void		check_sort(t_stack *stack_a, char **commands);
+short		check_input(int argc, char **argv, char **commands);
 
 #endif

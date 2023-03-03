@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 20:25:10 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/03/04 01:08:13 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include "get_next_line.h"
 
@@ -22,7 +34,9 @@ char	**copy_list(char **list, char *line)
 
 	i = 0;
 	while (list[i])
+	{	
 		i++;
+	}
 	new_list = (char **)malloc(sizeof(char *) * (i + 2));
 	i = 0;
 	while (list[i])
@@ -33,7 +47,7 @@ char	**copy_list(char **list, char *line)
 	new_list[i] = ft_strdup(line);
 	i++;
 	new_list[i] = NULL;
-	// free_me(0, list);
+	free_me((void *)&line, list);
 	return (new_list);
 }
 
@@ -43,11 +57,11 @@ char	**get_lines(char *line, char **list)
 	if (!line)
 		return (0);
 	if (!(ft_strncmp(line, "sa", 2) || ft_strncmp(line, "sb", 2)
-		|| ft_strncmp(line, "ss", 2) || ft_strncmp(line, "pa", 2)
-		|| ft_strncmp(line, "pb", 2) || ft_strncmp(line, "ra", 2)
-		|| ft_strncmp(line, "rb", 2) || ft_strncmp(line, "rr", 2)
-		|| ft_strncmp(line, "rra", 3) || ft_strncmp(line, "rrb", 3)
-		|| ft_strncmp(line, "rrr", 3)))
+			|| ft_strncmp(line, "ss", 2) || ft_strncmp(line, "pa", 2)
+			|| ft_strncmp(line, "pb", 2) || ft_strncmp(line, "ra", 2)
+			|| ft_strncmp(line, "rb", 2) || ft_strncmp(line, "rr", 2)
+			|| ft_strncmp(line, "rra", 3) || ft_strncmp(line, "rrb", 3)
+			|| ft_strncmp(line, "rrr", 3)))
 	{
 		free(line);
 		free_me(0, list);
@@ -62,10 +76,12 @@ int	main(int argc, char **argv)
 	char	*line;
 	char	**list;
 	char	**temp;
-
+	
+	line = NULL;
 	if (argc < 2)
 		free_error(0, 0);
 	list = (char **)malloc(sizeof(char *));
+	list[0] = NULL;
 	while (list)
 	{
 		list = get_lines(line, list);
@@ -74,5 +90,7 @@ int	main(int argc, char **argv)
 	}
 	list = temp;
 	check_input(argc, argv, list);
+	free_me(0, list);
+	system("leaks checker");
 	return (0);
 }

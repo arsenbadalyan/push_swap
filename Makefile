@@ -1,60 +1,94 @@
+# Main Variables
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-SRCS = $(shell find ./src -name "*.c")
-SRCS_BONUS = $(shell find ./bonus -name "*.c")
+NAME = push_swap
 INCLUDE = -I ./include/
 RM = rm -rf
-OUT_FILE = push_swap
-OUT_FILE_BONUS = checker
+OUTPUT_M = push_swap
+OUTPUT_B = checker
+SUB_DIRS = utils operations stackUtils
+BONUS_SUB_DIRS = checker gnl
+
+# Headers
+HEADER_M = ./include/push_swap.h ./include/Stack.h
+HEADER_B = ./include/get_next_line.h
+
+# Main directories
+OBJ_DIR = obj
+SRC_DIR = src
+BONUS_DIR = bonus
+
+# Making Sub directories
+SRCS_DIR = $(foreach dir, $(SUB_DIRS), $(addprefix $(SRC_DIR)/, $(dir)))
+OBJS_DIR = $(foreach dir, $(SUB_DIRS), $(addprefix $(OBJ_DIR)/, $(dir)))
+SRCS_DIR_B = $(foreach dir, $(BONUS_SUB_DIRS), $(addprefix $(BONUS_DIR)/, $(dir)))
+OBJS_DIR_B = $(foreach dir, $(BONUS_SUB_DIRS), $(addprefix $(OBJ_DIR)/, $(dir)))
+
+# c and o files
+SRCS = $(foreach dir, $(SRCS_DIR), $(wildcard $(dir)/*.c))
+OBJS = $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
+# to compile main file in push_swap
+MAIN_OBJ_PUSH_SWAP = $(OBJ_DIR)/$(NAME).o
+# bonus part
+SRCS_B = $(foreach dir, $(SRCS_DIR_B), $(wildcard $(dir)/*.c))
+OBJS_B = $(subst $(BONUS_DIR), $(OBJ_DIR), $(SRCS_B:.c=.o))
+
+# RUN PROGRAMS
+RUN_M = ./$(OUTPUT_M)
+RUN_B = ./$(OUTPUT_B) 
 
 # Colors
-RESET  = \033[0
+RESET  = \033[0m
 RED    = \033[31m
 GREEN  = \033[32m
 YELLOW = \033[33m
 
+all: $(NAME)
 
-#TODO: remove flag rule and add flags in 
-all: Makefile
-	@echo "$(YELLOW)Compiling all files...$(RESET)"
-	@echo "$(YELLOW)Please Wait...$(RESET)"
-	@$(CC) $(INCLUDE) $(SRCS) main.c -o $(OUT_FILE)
+$(NAME): Makefile compilemsg compileutils $(MAIN_OBJ_PUSH_SWAP) $(HEADER_M)
+	@$(CC) $(FLAGS) $(INCLUDE) $(OBJS) $(MAIN_OBJ_PUSH_SWAP) -o $(OUTPUT_M)
 	@echo "$(GREEN)Done!$(RESET)"
-bonus: Makefile
-	@echo "$(YELLOW)Compiling all files...$(RESET)"
+
+bonus: Makefile compilemsg compileutils $(OBJS_B) $(HEADER_M) $(HEADER_B)
+	@$(CC) $(FLAGS) $(INCLUDE) $(OBJS) $(OBJS_B) -o $(OUTPUT_B)
+	@echo "$(GREEN)!DONE BONUS!$(RESET)"
+
+compileutils: $(OBJS)
+
+compilemsg:
+	@echo "$(YELLOW)Compiling files...$(RESET)"
 	@echo "$(YELLOW)Please Wait...$(RESET)"
-	@$(CC) $(INCLUDE) $(SRCS) $(SRCS_BONUS) -o $(OUT_FILE_BONUS)
-	@echo "$(GREEN)Done!$(RESET)"
-flag:
-	@echo "$(GREEN)Compiling all files...$(RESET)"
-	@$(CC) $(FLAGS) $(INCLUDE) $(SRCS) -o $(OUT_FILE)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
+	@mkdir -p $(OBJ_DIR) $(OBJS_DIR)
+	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
+	@echo "$(GREEN)Compiling $^ $(RESET)"
+
+$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c
+	@mkdir -p $(OBJ_DIR) $(OBJS_DIR_B)
+	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
+	@echo "$(GREEN)Compiling $^ $(RESET)"
+
 clean:
 	@echo "$(RED)Removing object files...$(RESET)"
-	@$(RM) *.o
+	@$(RM) $(OBJ_DIR)
 	@echo "$(GREEN)Done!$(RESET)"
+
 fclean: clean
 	@echo "$(RED)Removing out file...$(RESET)"
-	@$(RM) $(OUT_FILE)
+	@$(RM) $(RUN_M) $(RUN_B)
 	@echo "$(GREEN)Done!$(RESET)"
 
 test: $(NAME)
 	$(eval ARG = $(shell jot -r 14 0 2000000))
-	./push_swap $(ARG) | ./checker_Mac $(ARG)
+	$(RUN_M) $(ARG) | $(RUN_B) $(ARG)
 	@echo -n "Instructions: "
-	@./push_swap $(ARG) | wc -l
-#                ./push_swap $(ARG)
+	@$(RUN_M) $(ARG) | wc -l
 
 test_my: $(NAME) $(BONUS_NAME)
 	$(eval ARG = $(shell jot -r 100 0 2000000))
-	./push_swap $(ARG) | ./checker $(ARG)
+	$(RUN_M) $(ARG) | $(RUN_B) $(ARG)
 	@echo -n "Instructions: "
-	@./push_swap $(ARG) | wc -l
-#                ./push_swap $(ARG)
+	@$(RUN_M) $(ARG) | wc -l
 
-#Test case TODO: delete
-run1:
-	./$(OUT_FILE) 1
-run2:
-	./$(OUT_FILE) "5 -002"
-run3:
-	./$(OUT_FILE) 6 4 "-00"
+re: fclean all
