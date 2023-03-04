@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:25:10 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/03/04 01:08:13 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/04 20:41:58 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char	**get_lines(char *line, char **list)
 			|| ft_strncmp(line, "rrr", 3)))
 	{
 		free(line);
-		free_me((void *)&line, 0);
 		free_error(0, 0);
 	}
 	list = copy_list(list, line);
@@ -80,8 +79,10 @@ int	main(int argc, char **argv)
 	char	**temp;
 
 	line = NULL;
-	if (argc < 2)
+	if (argc < 1)
 		return (0);
+	if (quick_check(argc, argv))
+		return (write(1, "Error\n", 6));
 	list = (char **)malloc(sizeof(char *));
 	list[0] = NULL;
 	temp = list;

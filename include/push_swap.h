@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:39:17 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/03/03 20:27:16 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/04 20:42:34 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ short		true_arrangement(t_stack *stack);
 void		select_function(t_stack *a, t_stack *b, char *command);
 void		check_sort(t_stack *stack_a, char **commands);
 short		check_input(int argc, char **argv, char **commands);
-
+short		quick_check(int argc, char **argv);
 #endif

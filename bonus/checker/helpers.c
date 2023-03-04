@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:25:16 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/03/04 01:01:43 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/04 20:42:09 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ short	true_arrangement(t_stack *stack)
 	size_t	index;
 	t_list	*list;
 
-	list = stack->first->next;
-	index = stack->first->index;
-	while (list->next->index != index)
+	index = 0;
+	list = stack->first;
+	while (index < stack->top)
 	{
-		if (list->index != (list->prev->index + 1))
+		if (index != list->index)
 			return (1);
 		list = list->next;
+		index++;
 	}
 	return (0);
 }
@@ -103,5 +104,21 @@ short	check_input(int argc, char **argv, char **commands)
 	}
 	else
 		free_error(istack_a, 0);
+	return (0);
+}
+
+short	quick_check(int argc, char **argv)
+{
+	size_t	argument_size;
+	int		*list;
+
+	list = 0;
+	argument_size = validate_arguments(argc, argv);
+	if (!argument_size)
+		return (1);
+	list = mkarr_check_doubles(argv, argc, argument_size);
+	if (!list)
+		return (1);
+	free(list);
 	return (0);
 }
