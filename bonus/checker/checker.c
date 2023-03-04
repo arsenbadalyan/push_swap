@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:25:10 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/03/04 20:41:58 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/03/04 21:33:33 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	char	**temp;
 
 	line = NULL;
-	if (argc < 1)
+	if (argc < 2)
 		return (0);
 	if (quick_check(argc, argv))
 		return (write(1, "Error\n", 6));
