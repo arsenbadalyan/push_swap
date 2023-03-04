@@ -53,6 +53,8 @@ bonus: Makefile compilemsg compileutils $(OBJS_B) $(HEADER_M) $(HEADER_B)
 	@$(CC) $(FLAGS) $(INCLUDE) $(OBJS) $(OBJS_B) -o $(OUTPUT_B)
 	@echo "$(GREEN)!DONE BONUS!$(RESET)"
 
+both: all bonus
+
 compileutils: $(OBJS)
 
 compilemsg:
@@ -72,23 +74,18 @@ $(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c
 clean:
 	@echo "$(RED)Removing object files...$(RESET)"
 	@$(RM) $(OBJ_DIR)
-	@echo "$(GREEN)Done!$(RESET)"
 
 fclean: clean
 	@echo "$(RED)Removing out file...$(RESET)"
 	@$(RM) $(RUN_M) $(RUN_B)
 	@echo "$(GREEN)Done!$(RESET)"
 
-test: $(NAME)
-	$(eval ARG = $(shell jot -r 14 0 2000000))
-	$(RUN_M) $(ARG) | $(RUN_B) $(ARG)
-	@echo -n "Instructions: "
-	@$(RUN_M) $(ARG) | wc -l
-
-test_my: $(NAME) $(BONUS_NAME)
-	$(eval ARG = $(shell jot -r 100 0 2000000))
+test: $(NAME) bonus
+	$(eval ARG = $(shell jot -r 5 0 2000000))
 	$(RUN_M) $(ARG) | $(RUN_B) $(ARG)
 	@echo -n "Instructions: "
 	@$(RUN_M) $(ARG) | wc -l
 
 re: fclean all
+
+.PHONY: all bonus both clean fclean test re

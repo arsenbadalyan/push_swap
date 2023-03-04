@@ -103,6 +103,5 @@ short	check_input(int argc, char **argv, char **commands)
 	}
 	else
 		free_error(istack_a, 0);
-	// free_me(0, commands);
 	return (0);
 }

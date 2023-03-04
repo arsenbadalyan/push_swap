@@ -19,7 +19,6 @@ void	free_error(t_stack *a, t_stack *b)
 		free_stack(a);
 	if (b)
 		free_stack(b);
-	system("leaks checker");
 	exit(1);
 }
 

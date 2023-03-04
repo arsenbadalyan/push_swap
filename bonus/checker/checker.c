@@ -24,7 +24,9 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 			return (0);
 		i++;
 	}
-	return (1);
+	if (str1[i] == '\n' || !str1[i])
+		return (1);
+	return (0);
 }
 
 char	**copy_list(char **list, char *line)
@@ -64,7 +66,7 @@ char	**get_lines(char *line, char **list)
 			|| ft_strncmp(line, "rrr", 3)))
 	{
 		free(line);
-		free_me(0, list);
+		free_me((void *)&line, 0);
 		free_error(0, 0);
 	}
 	list = copy_list(list, line);
@@ -76,12 +78,13 @@ int	main(int argc, char **argv)
 	char	*line;
 	char	**list;
 	char	**temp;
-	
+
 	line = NULL;
 	if (argc < 2)
-		free_error(0, 0);
+		return (0);
 	list = (char **)malloc(sizeof(char *));
 	list[0] = NULL;
+	temp = list;
 	while (list)
 	{
 		list = get_lines(line, list);
@@ -91,6 +94,5 @@ int	main(int argc, char **argv)
 	list = temp;
 	check_input(argc, argv, list);
 	free_me(0, list);
-	system("leaks checker");
 	return (0);
 }
